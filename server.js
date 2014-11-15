@@ -1,5 +1,6 @@
 // Load required packages
 var express = require('express');
+var compression = require('compression');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var spellController = require('./controllers/spellController');
@@ -13,6 +14,14 @@ mongoose.connect('mongodb://localhost:27017/dnd5Spells');
 // Create our Express application
 var app = express();
 
+// Add content compression middleware
+app.use(compression());
+
+// Add static middleware
+var oneDay = 86400000;
+app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+
+
 // Use the body-parser package in our application
 app.use(bodyParser.urlencoded({
   extended: true
@@ -20,6 +29,9 @@ app.use(bodyParser.urlencoded({
 
 // Use the passport package in our application
 app.use(passport.initialize());
+
+// Add static middleware
+app.use(express.static(__dirname + '/public'));
 
 // Create our Express router
 var router = express.Router();
