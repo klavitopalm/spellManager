@@ -25,7 +25,6 @@ var SpellSchema = new mongoose.Schema({
     concentration : Boolean
   },
   description : String,
-  userId: String
 });
 
 // Export the Mongoose model

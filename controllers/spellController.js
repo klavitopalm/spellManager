@@ -27,8 +27,6 @@ exports.postSpell = function(req, res) {
 
   spell.description = req.body.description;
 
-  spell.userId = req.user._id;
-
   // Save the spell and check for errors
   spell.save(function(err) {
     if (err)
@@ -41,7 +39,7 @@ exports.postSpell = function(req, res) {
 // Create endpoint /api/spells for GET
 exports.getSpells = function(req, res) {
   // Use the Spell model to find all spells
-  Spell.find({ userId: req.user._id }, function(err, spells) {
+  Spell.find(function(err, spells) {
     if (err)
       res.send(err);
 
@@ -51,8 +49,8 @@ exports.getSpells = function(req, res) {
 
 // Create endpoint /api/spells/:spell_id for GET
 exports.getSpell = function(req, res) {
-  // Use the Beer model to find a specific beer
-  Spell.find({ userId: req.user._id, _id: req.params.beer_id }, function(err, spell) {
+  // Use the Spell model to find a specific spell
+  Spell.find({ _id: req.params.spell_id }, function(err, spell) {
     if (err)
       res.send(err);
 
@@ -63,7 +61,7 @@ exports.getSpell = function(req, res) {
 // Create endpoint /api/spells/:spell_id for PUT
 exports.putSpell = function(req, res) {
   // Use the Spell model to find a specific spell
-  Spell.update({ userId: req.user._id, _id: req.params.spell_id }, { description: req.body.description }, function(err, num, raw) {
+  Spell.update({ _id: req.params.spell_id }, { description: req.body.description }, function(err, num, raw) {
     if (err)
       res.send(err);
 
@@ -74,7 +72,7 @@ exports.putSpell = function(req, res) {
 // Create endpoint /api/spells/:spell_id for DELETE
 exports.deleteSpell = function(req, res) {
   // Use the Spell model to find a specific spell and remove it
-  Spell.remove({ userId: req.user._id, _id: req.params.spell_id }, function(err) {
+  Spell.remove({_id: req.params.spell_id }, function(err) {
     if (err)
       res.send(err);
 
