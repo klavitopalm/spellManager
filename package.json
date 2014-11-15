@@ -1,7 +1,9 @@
 {
   "name": "dnd5spells",
   "version": "0.0.1",
+  "description": "DnD5 Spell List",
   "main": "server.js",
+  "author" : "klavitopalm",
   "dependencies": {
     "express": "~4.10.2",
     "mongoose": "~3.8.19",
