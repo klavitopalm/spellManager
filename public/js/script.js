@@ -32,14 +32,14 @@ function listSpells() {
       $.each(data, function(){
 
          divContent += '<li><a href="#" class="linkShowSpell" rel="'
-         + this._id + '" title="Show Details">' + this.name
+         + this._id + '" title="Show Details">' + this._id
          + '</a>';
 
          divContent += '<a href="#" class="linkDeleteSpell" rel="'
-         + this._id + '" title="Delete '+ this.name+'">delete</a>';
+         + this._id + '" title="Delete '+ this._id+'">delete</a>';
 
          divContent += '<a href="#" class="linkEditSpell" rel="'
-         + this._id + '" title="Edit '+ this.name+'">edit</a>';
+         + this._id + '" title="Edit '+ this._id+'">edit</a>';
 
          divContent += '</li>';
       });
@@ -75,7 +75,7 @@ function getSpellObjectFromId(id) {
 }
 
 function populateSpellInfoBoxes(spellObject) {
-   $('#spellName').text(spellObject.name);
+   $('#spellName').text(spellObject._id);
    $('#spellLevel').text(spellObject.level);
    $('#spellType').text(spellObject.type);
 
@@ -131,14 +131,10 @@ function submitSpell(event) {
 
             'description': $('#addSpell fieldset input#inputSpellDescription').val(),
         }
-         var restType = 'POST';
-         if (isSpellNameAlreadyExisting(spellContents.name)) {
-            restType = 'PUT';
-         }
 
         // Use AJAX to post the object to our adduser service
         $.ajax({
-            type: restType,
+            type: 'POST',
             data: spellContents,
             url: '/api/spells',
             dataType: 'JSON'
@@ -165,11 +161,6 @@ function submitSpell(event) {
         return false;
     }
 };
-
-function isSpellNameAlreadyExisting(name) {
-
-   return false;
-}
 
 function deleteSpell(event) {
    event.preventDefault();
@@ -215,7 +206,7 @@ function editSpell(event) {
 }
 
 function populateSpellInputBoxes(spellObject) {
-   $('#inputSpellName').val(spellObject.name);
+   $('#inputSpellName').val(spellObject._id);
    $('#inputSpellLevel').val(spellObject.level);
    $('#inputSpellType').val(spellObject.type);
 

@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 // Define our spell schema
 var SpellSchema = new mongoose.Schema({
-  name: String,
+  _id: String,
   type: String,
   level: Number,
   castingTime : {
