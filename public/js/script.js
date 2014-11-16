@@ -85,13 +85,13 @@ function populateSpellInfoBoxes(spellObject) {
    $('#spellRangeValue').text(spellObject.range.value);
    $('#spellRangeDescription').text(spellObject.range.description);
 
-   $('#spellComponentsVerbal').text(spellObject.components.verbal);
-   $('#spellComponentsSomatic').text(spellObject.components.somatic);
-   $('#spellComponentsMaterial').text(spellObject.components.material);
+   $('#spellComponentsVerbal').prop('checked',spellObject.components.verbal);
+   $('#spellComponentsSomatic').prop('checked',spellObject.components.somatic);
+   $('#spellComponentsMaterial').prop('checked',spellObject.components.material);
    $('#spellComponentsMaterialDescription').text(spellObject.components.materialDescription);
 
    $('#spellDurationAmount').text(spellObject.duration.amount);
-   $('#spellDurationConcentration').text(spellObject.duration.concentration);
+   $('#spellDurationConcentration').prop('checked',spellObject.duration.concentration);
 
    $('#spellDescription').text(spellObject.description);
 }
@@ -121,16 +121,18 @@ function submitSpell(event) {
             'rangeValue': $('#addSpell fieldset input#inputSpellRangeValue').val(),
             'rangeDescription': $('#addSpell fieldset input#inputSpellRangeDescription').val(),
 
-            'componentsVerbal': $('#addSpell fieldset input#inputSpellComponentsVerbal').val(),
-            'componentsSomatic': $('#addSpell fieldset input#inputSpellComponentsSomatic').val(),
-            'componentsMaterial': $('#addSpell fieldset input#inputSpellComponentsMaterial').val(),
+            'componentsVerbal': $('#addSpell fieldset input#inputSpellComponentsVerbal').is(':checked'),
+            'componentsSomatic': $('#addSpell fieldset input#inputSpellComponentsSomatic').is(':checked'),
+            'componentsMaterial': $('#addSpell fieldset input#inputSpellComponentsMaterial').is(':checked'),
             'componentsMaterialDescription': $('#addSpell fieldset input#inputSpellComponentsMaterialDescription').val(),
 
             'durationAmount': $('#addSpell fieldset input#inputSpellDurationAmount').val(),
-            'durationConcentration': $('#addSpell fieldset input#inputSpellDurationConcentration').val(),
+            'durationConcentration': $('#addSpell fieldset input#inputSpellDurationConcentration').is(':checked'),
 
-            'description': $('#addSpell fieldset input#inputSpellDescription').val(),
+            'description': $('#addSpell fieldset textarea#inputSpellDescription').val(),
         }
+
+         //TODO: put if entry needs to be updated, otherwise post
 
         // Use AJAX to post the object to our adduser service
         $.ajax({
@@ -216,13 +218,13 @@ function populateSpellInputBoxes(spellObject) {
    $('#inputSpellRangeValue').val(spellObject.range.value);
    $('#inputSpellRangeDescription').val(spellObject.range.description);
 
-   $('#inputSpellComponentsVerbal').val(spellObject.components.verbal);
-   $('#inputSpellComponentsSomatic').val(spellObject.components.somatic);
-   $('#inputSpellComponentsMaterial').val(spellObject.components.material);
+   $('#inputSpellComponentsVerbal').prop('checked',spellObject.components.verbal)
+   $('#inputSpellComponentsSomatic').prop('checked',spellObject.components.somatic);
+   $('#inputSpellComponentsMaterial').prop('checked',spellObject.components.material);
    $('#inputSpellComponentsMaterialDescription').val(spellObject.components.materialDescription);
 
    $('#inputSpellDurationAmount').val(spellObject.duration.amount);
-   $('#inputSpellDurationConcentration').val(spellObject.duration.concentration);
+   $('#inputSpellDurationConcentration').prop('checked',spellObject.components.concentration);
 
    $('#inputSpellDescription').val(spellObject.description);
 }

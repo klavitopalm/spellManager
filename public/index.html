@@ -36,15 +36,15 @@
             <span id='spellRangeValue'></span>
             <span id='spellRangeDescription'></span>
          </div>
-         <div>Components:
-            <span id='spellComponentsVerbal'></span>
-            <span id='spellComponentsSomatic'></span>
-            <span id='spellComponentsMaterial'></span>
+         <div>Components:<br />
+            Verbal<input type='checkbox' id='spellComponentsVerbal' disabled><br />
+            Somatic<input type='checkbox' id='spellComponentsSomatic' disabled><br />
+            Material<input type='checkbox' id='spellComponentsMaterial' disabled><br />
             <span id='spellComponentsMaterialDescription'></span>
          </div>
          <div>Duration:
-            <span id='spellDurationAmount'></span>
-            <span id='spellDurationConcentration'></span>
+            <span id='spellDurationAmount'></span><br />
+            Concentration<input type='checkbox' id='spellDurationConcentration' disabled>
          </div>
          <div>Description:
             <span id='spellDescription'></span>
@@ -56,29 +56,29 @@
         <div id="addSpell">
             <fieldset>
                Name: <input id="inputSpellName"type="text", placeholder="Name"><br />
-               Level: <input id="inputSpellLevel"type="text", placeholder="Level"><br />
+               Level: <input id="inputSpellLevel"type="number", placeholder="Level"><br />
                Type: <input id="inputSpellType"type="text", placeholder="Type"><br />
 
                <br /><div>CastingTime: </div>
-               Value: <input id="inputSpellCastingTimeValue"type="text", placeholder="Castingtime Value"><br />
+               Value: <input id="inputSpellCastingTimeValue"type="number", placeholder="Castingtime Value"><br />
                Unit: <input id="inputSpellCastingTimeUnit"type="text", placeholder="Castingtime Unit"><br />
 
                <br /><div>Range: </div>
-               Value: <input id="inputSpellRangeValue"type="text", placeholder="Range Value"><br />
+               Value: <input id="inputSpellRangeValue"type="number", placeholder="Range Value"><br />
                Description: <input id="inputSpellRangeDescription"type="text", placeholder="Range Description"><br />
 
                <br /><div>Components: </div>
-               Verbal: <input id="inputSpellComponentsVerbal"type="text", placeholder="Components Verbal"><br />
-               Somatic: <input id="inputSpellComponentsSomatic"type="text", placeholder="Components Somatic"><br />
-               Material: <input id="inputSpellComponentsMaterial"type="text", placeholder="Components Material"><br />
+               Verbal: <input id="inputSpellComponentsVerbal"type="checkbox"<br />
+               Somatic: <input id="inputSpellComponentsSomatic"type="checkbox"<br />
+               Material: <input id="inputSpellComponentsMaterial"type="checkbox"<br />
                Material Description: <input id="inputSpellComponentsMaterialDescription"type="text", placeholder="Components Material Description"><br />
 
                <br /><div>Duration:</div>
                Amount: <input id="inputSpellDurationAmount"type="text", placeholder="Duration Amount"><br />
-               Concentration: <input id="inputSpellDurationConcentration"type="text", placeholder="Duration Concentration"><br />
+               Concentration: <input id="inputSpellDurationConcentration"type="checkbox"<br />
 
                <br />
-               Description: <input id="inputSpellDescription"type="text", placeholder="Description"><br />
+               Description: <textarea rows="5" cols="50" id="inputSpellDescription"type="text", placeholder="Description"></textarea><br />
 
                <button id="buttonAddSpell">Add Spell</button>
              </fieldset>
