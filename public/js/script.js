@@ -14,7 +14,7 @@ $(function() {
    $('#spellList').on('click', 'li a.linkEditSpell', editSpell);
 
    // Add User button click
-   $('#buttonAddSpell').on('click', addSpell);
+   $('#buttonAddSpell').on('click', submitSpell);
 
 
 });
@@ -96,11 +96,12 @@ function populateSpellInfoBoxes(spellObject) {
    $('#spellDescription').text(spellObject.description);
 }
 
-function addSpell(event) {
+function submitSpell(event) {
     event.preventDefault();
 
    //  // Super basic validation - increase errorCount variable if any fields are blank
    var errorCount = 0;
+
    //  $('#addSpell input').each(function(index, val) {
    //      if($(this).val() === '') { errorCount++; }
    //  });
@@ -109,10 +110,10 @@ function addSpell(event) {
     if(errorCount === 0) {
 
         // If it is, compile all user info into one object
-        var newSpell = {
+        var spellContents = {
             'name': $('#addSpell fieldset input#inputSpellName').val(),
-            'type': $('#addSpell fieldset input#inputSpellLevel').val(),
-            'level': $('#addSpell fieldset input#inputSpellType').val(),
+            'type': $('#addSpell fieldset input#inputSpellType').val(),
+            'level': $('#addSpell fieldset input#inputSpellLevel').val(),
 
             'castingTimeValue': $('#addSpell fieldset input#inputSpellCastingTimeValue').val(),
             'castingTimeUnit': $('#addSpell fieldset input#inputSpellCastingTimeUnit').val(),
@@ -130,11 +131,15 @@ function addSpell(event) {
 
             'description': $('#addSpell fieldset input#inputSpellDescription').val(),
         }
+         var restType = 'POST';
+         if (isSpellNameAlreadyExisting(spellContents.name)) {
+            restType = 'PUT';
+         }
 
         // Use AJAX to post the object to our adduser service
         $.ajax({
-            type: 'POST',
-            data: newSpell,
+            type: restType,
+            data: spellContents,
             url: '/api/spells',
             dataType: 'JSON'
         }).done(function( response ) {
@@ -160,6 +165,11 @@ function addSpell(event) {
         return false;
     }
 };
+
+function isSpellNameAlreadyExisting(name) {
+
+   return false;
+}
 
 function deleteSpell(event) {
    event.preventDefault();
@@ -202,7 +212,6 @@ function editSpell(event) {
    var thisSpellObject = getSpellObjectFromId(thisSpellId);
 
    populateSpellInputBoxes(thisSpellObject);
-
 }
 
 function populateSpellInputBoxes(spellObject) {
