@@ -7,6 +7,9 @@ $(function() {
    // Spell link click
    $('#spellList').on('click', 'li a.linkShowSpell', showSpellInfo);
 
+   // Delete spell link click
+   $('#spellList').on('click', 'li a.linkDeleteSpell', deleteSpell);
+
    // Add User button click
    $('#buttonAddSpell').on('click', addSpell);
 
@@ -27,8 +30,12 @@ function listSpells() {
 
          divContent += '<li><a href="#" class="linkShowSpell" rel="'
          + this.name + '" title="Show Details">' + this.name
-         + '</a></li>';
+         + '</a>';
 
+         divContent += '<a href="#" class="linkDeleteSpell" rel="'
+         + this._id + '" title="Delete '+ this.name+'">delete</a>';
+
+         divContent += '</li>';
       });
 
       // Inject the whole content string into our existing HTML list
@@ -116,19 +123,17 @@ function addSpell(event) {
         }).done(function( response ) {
 
             // Check for successful (blank) response
-            if (response.message === "Spell added to the spell list!") {
+            if (response.message === "added") {
 
                 // Clear the form inputs
                 $('#addSpell fieldset input').val('');
 
-                // Update the table
+                // Update the spells list
                 listSpells();
             }
             else {
-
                 // If something goes wrong, alert the error message that our service returned
                 alert('Error: ' + response.message);
-
             }
         });
     }
@@ -138,3 +143,40 @@ function addSpell(event) {
         return false;
     }
 };
+
+function deleteSpell(event) {
+   event.preventDefault();
+
+   // Pop up a confirmation dialog
+    var confirmation = confirm('Are you sure you want to delete the spell?');
+
+    // Check and make sure the user confirmed
+    if (confirmation === true) {
+
+        // If they did, do our delete
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/spells/' + $(this).attr('rel')
+        }).done(function( response ) {
+
+            // Check for a successful (removed) response
+            if (response.message === 'removed') {
+            }
+            else {
+                alert('Error: ' + response.message);
+            }
+
+            // Update the spells list
+            listSpells();
+
+        });
+
+    }
+    else {
+
+        // If they said no to the confirm, do nothing
+        return false;
+
+    }
+
+}

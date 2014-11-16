@@ -28,6 +28,11 @@ a {
 		background:rgba(80,120,255,0.1);
 	}
 
+.linkShowSpell {
+   margin-right: 10px;
+}
+
+
 fieldset {
 	border:0;
 	padding:0; margin:0;

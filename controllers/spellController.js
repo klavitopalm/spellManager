@@ -32,7 +32,7 @@ exports.postSpell = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Spell added to the spell list!', data: spell });
+    res.json({ message: 'added', data: spell });
   });
 };
 
@@ -76,6 +76,6 @@ exports.deleteSpell = function(req, res) {
     if (err)
       res.send(err);
 
-    res.json({ message: 'Spell removed from the spell list!' });
+    res.json({ message: 'removed' });
   });
 };
