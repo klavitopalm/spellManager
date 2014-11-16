@@ -10,6 +10,9 @@ $(function() {
    // Delete spell link click
    $('#spellList').on('click', 'li a.linkDeleteSpell', deleteSpell);
 
+   // Edit spell link click
+   $('#spellList').on('click', 'li a.linkEditSpell', editSpell);
+
    // Add User button click
    $('#buttonAddSpell').on('click', addSpell);
 
@@ -29,11 +32,14 @@ function listSpells() {
       $.each(data, function(){
 
          divContent += '<li><a href="#" class="linkShowSpell" rel="'
-         + this.name + '" title="Show Details">' + this.name
+         + this._id + '" title="Show Details">' + this.name
          + '</a>';
 
          divContent += '<a href="#" class="linkDeleteSpell" rel="'
          + this._id + '" title="Delete '+ this.name+'">delete</a>';
+
+         divContent += '<a href="#" class="linkEditSpell" rel="'
+         + this._id + '" title="Edit '+ this.name+'">edit</a>';
 
          divContent += '</li>';
       });
@@ -50,33 +56,44 @@ function showSpellInfo(event) {
    event.preventDefault();
 
    // Retrieve spellname from link rel attribute
-   var thisSpellName = $(this).attr('rel');
-
-   // Get Index of object based on id value
-   var arrayPosition = allSpells.map(function(arrayItem)
-    { return arrayItem.name; }).indexOf(thisSpellName);
+   var thisSpellId = $(this).attr('rel');
 
    // Get our Spell Object
-   var thisSpellObject = allSpells[arrayPosition];
+   var thisSpellObject = getSpellObjectFromId(thisSpellId);
 
    //Populate Info Box
-   $('#spellName').text(thisSpellObject.name);
-   $('#spellLevel').text(thisSpellObject.level);
-   $('#spellType').text(thisSpellObject.type);
+   populateSpellInfoBoxes(thisSpellObject);
+}
 
-   $('#spellCastingTimeValue').text(thisSpellObject.castingTime.value);
-   $('#spellCastingTimeUnit').text(thisSpellObject.castingTime.unit);
-   $('#spellRangeValue').text(thisSpellObject.range.value);
-   $('#spellRangeDescription').text(thisSpellObject.range.description);
-   $('#spellComponentsVerbal').text(thisSpellObject.components.verbal);
-   $('#spellComponentsSomatic').text(thisSpellObject.components.somatic);
-   $('#spellComponentsMaterial').text(thisSpellObject.components.material);
-   $('#spellComponentsMaterialDescription').text(thisSpellObject.components.materialDescription);
-   $('#spellDurationAmount').text(thisSpellObject.duration.amount);
-   $('#spellDurationConcentration').text(thisSpellObject.duration.concentration);
+function getSpellObjectFromId(id) {
+   // Get Index of object based on id value
+   var arrayPosition = allSpells.map(function(arrayItem)
+    { return arrayItem._id; }).indexOf(id);
 
-   $('#spellDescription').text(thisSpellObject.description);
+   // Get our Spell Object
+   return allSpells[arrayPosition];
+}
 
+function populateSpellInfoBoxes(spellObject) {
+   $('#spellName').text(spellObject.name);
+   $('#spellLevel').text(spellObject.level);
+   $('#spellType').text(spellObject.type);
+
+   $('#spellCastingTimeValue').text(spellObject.castingTime.value);
+   $('#spellCastingTimeUnit').text(spellObject.castingTime.unit);
+
+   $('#spellRangeValue').text(spellObject.range.value);
+   $('#spellRangeDescription').text(spellObject.range.description);
+
+   $('#spellComponentsVerbal').text(spellObject.components.verbal);
+   $('#spellComponentsSomatic').text(spellObject.components.somatic);
+   $('#spellComponentsMaterial').text(spellObject.components.material);
+   $('#spellComponentsMaterialDescription').text(spellObject.components.materialDescription);
+
+   $('#spellDurationAmount').text(spellObject.duration.amount);
+   $('#spellDurationConcentration').text(spellObject.duration.concentration);
+
+   $('#spellDescription').text(spellObject.description);
 }
 
 function addSpell(event) {
@@ -158,7 +175,6 @@ function deleteSpell(event) {
             type: 'DELETE',
             url: '/api/spells/' + $(this).attr('rel')
         }).done(function( response ) {
-
             // Check for a successful (removed) response
             if (response.message === 'removed') {
             }
@@ -168,15 +184,45 @@ function deleteSpell(event) {
 
             // Update the spells list
             listSpells();
-
         });
-
     }
     else {
-
         // If they said no to the confirm, do nothing
         return false;
-
     }
+}
 
+function editSpell(event) {
+   event.preventDefault();
+
+   // Retrieve spellname from link rel attribute
+   var thisSpellId = $(this).attr('rel');
+
+   // Get our Spell Object
+   var thisSpellObject = getSpellObjectFromId(thisSpellId);
+
+   populateSpellInputBoxes(thisSpellObject);
+
+}
+
+function populateSpellInputBoxes(spellObject) {
+   $('#inputSpellName').val(spellObject.name);
+   $('#inputSpellLevel').val(spellObject.level);
+   $('#inputSpellType').val(spellObject.type);
+
+   $('#inputSpellCastingTimeValue').val(spellObject.castingTime.value);
+   $('#inputSpellCastingTimeUnit').val(spellObject.castingTime.unit);
+
+   $('#inputSpellRangeValue').val(spellObject.range.value);
+   $('#inputSpellRangeDescription').val(spellObject.range.description);
+
+   $('#inputSpellComponentsVerbal').val(spellObject.components.verbal);
+   $('#inputSpellComponentsSomatic').val(spellObject.components.somatic);
+   $('#inputSpellComponentsMaterial').val(spellObject.components.material);
+   $('#inputSpellComponentsMaterialDescription').val(spellObject.components.materialDescription);
+
+   $('#inputSpellDurationAmount').val(spellObject.duration.amount);
+   $('#inputSpellDurationConcentration').val(spellObject.duration.concentration);
+
+   $('#inputSpellDescription').val(spellObject.description);
 }

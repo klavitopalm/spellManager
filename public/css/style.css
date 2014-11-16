@@ -29,7 +29,17 @@ a {
 	}
 
 .linkShowSpell {
-   margin-right: 10px;
+   color : blue;
+}
+
+.linkDeleteSpell {
+   margin-left: 10px;
+   color : red;
+}
+
+.linkEditSpell {
+   margin-left: 10px;
+   color : green;
 }
 
 
