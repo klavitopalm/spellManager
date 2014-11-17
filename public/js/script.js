@@ -132,8 +132,6 @@ function submitSpell(event) {
             'description': $('#addSpell fieldset textarea#inputSpellDescription').val(),
         }
 
-         //TODO: put if entry needs to be updated, otherwise post
-
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
@@ -147,6 +145,9 @@ function submitSpell(event) {
 
                 // Clear the form inputs
                 $('#addSpell fieldset input').val('');
+                $('#addSpell fieldset textarea').val('');
+                // Clear the form checkboxes
+                $('#addSpell fieldset input').prop('checked', false);
 
                 // Update the spells list
                 listSpells();
@@ -218,7 +219,7 @@ function populateSpellInputBoxes(spellObject) {
    $('#inputSpellRangeValue').val(spellObject.range.value);
    $('#inputSpellRangeDescription').val(spellObject.range.description);
 
-   $('#inputSpellComponentsVerbal').prop('checked',spellObject.components.verbal)
+   $('#inputSpellComponentsVerbal').prop('checked',spellObject.components.verbal);
    $('#inputSpellComponentsSomatic').prop('checked',spellObject.components.somatic);
    $('#inputSpellComponentsMaterial').prop('checked',spellObject.components.material);
    $('#inputSpellComponentsMaterialDescription').val(spellObject.components.materialDescription);

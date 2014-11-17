@@ -44,7 +44,7 @@ router.route('/spells')
 // Create endpoint handlers for /spells/:spell_id
 router.route('/spells/:spell_id')
   .get(authController.isAuthenticated, spellController.getSpell)
-  .put(authController.isAuthenticated, spellController.putSpell)
+  //.put(authController.isAuthenticated, spellController.putSpell)
   .delete(authController.isAuthenticated, spellController.deleteSpell);
 
 // Create endpoint handlers for /users

@@ -68,16 +68,16 @@ exports.getSpell = function(req, res) {
   });
 };
 
-// Create endpoint /api/spells/:spell_id for PUT
-exports.putSpell = function(req, res) {
-  // Use the Spell model to find a specific spell
-  Spell.update({ _id: req.params.spell_id }, { description: req.body.description }, function(err, num, raw) {
-    if (err)
-      res.send(err);
-
-    res.json({ message: num + ' updated' });
-  });
-};
+// // Create endpoint /api/spells/:spell_id for PUT
+// exports.putSpell = function(req, res) {
+//   // Use the Spell model to find a specific spell
+//   Spell.update({ _id: req.params.spell_id }, { description: req.body.description }, function(err, num, raw) {
+//     if (err)
+//       res.send(err);
+//
+//     res.json({ message: num + ' updated' });
+//   });
+// };
 
 // Create endpoint /api/spells/:spell_id for DELETE
 exports.deleteSpell = function(req, res) {
