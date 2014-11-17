@@ -27,13 +27,23 @@ exports.postSpell = function(req, res) {
 
   spell.description = req.body.description;
 
-  // Save the spell and check for errors
-  spell.save(function(err) {
-    if (err)
-      res.send(err);
+  // Convert the Model instance to a simple object using Model's 'toObject' function
+  // to prevent weirdness like infinite looping...
+  var upsertData = spell.toObject();
 
-    res.json({ message: 'added', data: spell });
-  });
+   // Delete the _id property, otherwise Mongo will return a "Mod on _id not allowed" error
+   delete upsertData._id;
+
+   // Do the upsert, which works like this: If no Spell document exists with
+   // _id = spell.id, then create a new doc using upsertData.
+   // Otherwise, update the existing doc with upsertData
+   Spell.update({_id: spell.id}, upsertData, {upsert: true}, function(err) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'added', data: spell });
+    });
+
 };
 
 // Create endpoint /api/spells for GET
