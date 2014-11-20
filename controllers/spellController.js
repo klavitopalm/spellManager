@@ -50,7 +50,7 @@ exports.postSpell = function(req, res) {
 // Create endpoint /api/spells for GET
 exports.getSpells = function(req, res) {
   // Use the Spell model to find all spells
-  Spell.find(function(err, spells) {
+  Spell.find().sort('_id').exec(function(err, spells) {
     if (err)
       res.send(err);
 
