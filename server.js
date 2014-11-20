@@ -9,7 +9,10 @@ var passport = require('passport');
 var authController = require('./controllers/authController');
 
 // Connect to the beerlocker MongoDB
-mongoose.connect('mongodb://localhost:27017/dnd5Spells');
+mongoose.connect(process.env.MONGO_COMPOSE);
+//run with MONGO_COMPOSE='mongodb://localhost:27017/dnd5Spells' nodemon server.js
+
+//mongoose.connect('mongodb://localhost:27017/dnd5Spells');
 
 // Create our Express application
 var app = express();
