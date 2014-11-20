@@ -10,6 +10,7 @@ exports.postSpell = function(req, res) {
   spell._id = req.body.name;
   spell.type = req.body.type;
   spell.level = req.body.level;
+  spell.ritual = req.body.ritual;
 
   spell.castingTime.value = req.body.castingTimeValue;
   spell.castingTime.unit = req.body.castingTimeUnit;

@@ -78,6 +78,7 @@ function populateSpellInfoBoxes(spellObject) {
    $('#spellName').text(spellObject._id);
    $('#spellLevel').text(spellObject.level);
    $('#spellType').text(spellObject.type);
+   $('#spellRitual').prop('checked',spellObject.ritual);
 
    $('#spellCastingTimeValue').text(spellObject.castingTime.value);
    $('#spellCastingTimeUnit').text(spellObject.castingTime.unit);
@@ -114,6 +115,7 @@ function submitSpell(event) {
             'name': $('#addSpell fieldset input#inputSpellName').val(),
             'type': $('#addSpell fieldset input#inputSpellType').val(),
             'level': $('#addSpell fieldset input#inputSpellLevel').val(),
+            'ritual': $('#addSpell fieldset input#inputSpellritual').is(':checked'),
 
             'castingTimeValue': $('#addSpell fieldset input#inputSpellCastingTimeValue').val(),
             'castingTimeUnit': $('#addSpell fieldset input#inputSpellCastingTimeUnit').val(),
@@ -212,6 +214,7 @@ function populateSpellInputBoxes(spellObject) {
    $('#inputSpellName').val(spellObject._id);
    $('#inputSpellLevel').val(spellObject.level);
    $('#inputSpellType').val(spellObject.type);
+   $('#inputSpellRitual').prop('checked',spellObject.ritual);
 
    $('#inputSpellCastingTimeValue').val(spellObject.castingTime.value);
    $('#inputSpellCastingTimeUnit').val(spellObject.castingTime.unit);

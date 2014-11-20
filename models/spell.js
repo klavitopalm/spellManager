@@ -6,6 +6,7 @@ var SpellSchema = new mongoose.Schema({
   _id: String,
   type: String,
   level: Number,
+  ritual: Boolean,
   castingTime : {
     value : Number,
     unit : String
