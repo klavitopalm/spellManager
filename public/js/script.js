@@ -170,8 +170,10 @@ function submitSpell(event) {
 function deleteSpell(event) {
    event.preventDefault();
 
+   var clickedSpellId = $(this).attr('rel')
+
    // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete the spell?');
+    var confirmation = confirm('Are you sure you want to delete the spell: ' +clickedSpellId+ '?');
 
     // Check and make sure the user confirmed
     if (confirmation === true) {
@@ -179,7 +181,7 @@ function deleteSpell(event) {
         // If they did, do our delete
         $.ajax({
             type: 'DELETE',
-            url: '/api/spells/' + $(this).attr('rel')
+            url: '/api/spells/' + clickedSpellId
         }).done(function( response ) {
             // Check for a successful (removed) response
             if (response.message === 'removed') {
