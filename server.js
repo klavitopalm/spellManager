@@ -1,16 +1,18 @@
+//run with MONGO_COMPOSE='mongodb://localhost:27017/dnd5Spells' nodemon server.js
+
 // Load required packages
 var express = require('express');
 var compression = require('compression');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var spellController = require('./controllers/spellController');
+var classSpellsController = require('./controllers/classSpellsController');
 var userController = require('./controllers/userController');
 var passport = require('passport');
 var authController = require('./controllers/authController');
 
 // Connect to the beerlocker MongoDB
 mongoose.connect(process.env.MONGO_COMPOSE);
-//run with MONGO_COMPOSE='mongodb://localhost:27017/dnd5Spells' nodemon server.js
 
 //mongoose.connect('mongodb://localhost:27017/dnd5Spells');
 
@@ -39,12 +41,12 @@ app.use(express.static(__dirname + '/public'));
 // Create our Express router
 var router = express.Router();
 
+
 // Create endpoint handlers for /spells
 router.route('/spells')
   .post(authController.isAuthenticated, spellController.postSpell)
   .get(authController.isAuthenticated, spellController.getSpells);
 
-// Create endpoint handlers for /spells/:spell_id
 router.route('/spells/:spell_id')
   .get(authController.isAuthenticated, spellController.getSpell)
   //.put(authController.isAuthenticated, spellController.putSpell)
@@ -54,6 +56,12 @@ router.route('/spells/:spell_id')
 router.route('/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
+
+  // Create endpoint handlers for /spells
+router.route('/classspells')
+  .post(authController.isAuthenticated, classSpellsController.postClassSpells)
+  .get(authController.isAuthenticated, classSpellsController.getClassSpells);
+
 
 
 // Register all our routes with /api
