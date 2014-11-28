@@ -57,10 +57,10 @@ router.route('/users')
   .post(userController.postUsers)
   .get(authController.isAuthenticated, userController.getUsers);
 
-  // Create endpoint handlers for /spells
+  // Create endpoint handlers for /classspells
 router.route('/classspells')
-  .post(authController.isAuthenticated, classSpellsController.postClassSpells)
-  .get(authController.isAuthenticated, classSpellsController.getClassSpells);
+  //.post(authController.isAuthenticated, classSpellsController.postClassSpells)
+  .get(authController.isAuthenticated, classSpellsController.getClassAndSpells);
 
 
 

@@ -42,6 +42,17 @@ a {
    color : green;
 }
 
+.linkDeleteClass {
+   margin-left: 10px;
+   color : red;
+}
+
+.linkEditClass {
+   margin-left: 10px;
+   color : green;
+}
+
+
 
 fieldset {
 	border:0;
