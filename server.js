@@ -59,7 +59,7 @@ router.route('/users')
 
   // Create endpoint handlers for /classspells
 router.route('/classspells')
-  //.post(authController.isAuthenticated, classSpellsController.postClassSpells)
+  .post(authController.isAuthenticated, classSpellsController.postClassSpells)
   .get(authController.isAuthenticated, classSpellsController.getClassAndSpells);
 
 

@@ -42,19 +42,28 @@ a {
    color : green;
 }
 
+
+fieldset {
+	border:0;
+	padding:0; margin:0;
+}
+
+/*class stuff*/
+
 .linkDeleteClass {
    margin-left: 10px;
    color : red;
 }
 
 .linkEditClass {
-   margin-left: 10px;
    color : green;
 }
 
+#classWrapper {
+   float: left;
+   clear: both;
+}
 
-
-fieldset {
-	border:0;
-	padding:0; margin:0;
+#spellListWrapper {
+   margin-left: 150px;
 }
