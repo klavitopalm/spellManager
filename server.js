@@ -62,6 +62,8 @@ router.route('/classspells')
   .post(authController.isAuthenticated, classSpellsController.postClassSpells)
   .get(authController.isAuthenticated, classSpellsController.getClassAndSpells);
 
+router.route('/classspells/:class_id')
+  .delete(authController.isAuthenticated, classSpellsController.deleteClass);
 
 
 // Register all our routes with /api

@@ -4,15 +4,10 @@ $(function() {
 
    listClasses();
 
-   // Spell link click
 
-   // Delete spell link click
-   $('#spellList').on('click', 'li a.linkDeleteSpell', deleteSpell);
-
-   // Edit spell link click
+   $('#classList').on('click', 'li a.linkDeleteClass', deleteClass);
    $('#classList').on('click', 'li a.linkEditClass', editClassSpells);
 
-   // Add User button click
    $('#buttonAddClass').on('click', submitClass);
 
 
@@ -109,63 +104,74 @@ function getClassObjectFromId(id) {
 function submitClass(event) {
     event.preventDefault();
 
+    //  // Super basic validation - increase errorCount variable if any fields are blank
+    var errorCount = 0;
 
-    $.getJSON('/api/spells', function( data ) {
-      // For each item in our JSON, add a list element
-      var spells = [];
-
-      $.each(data, function(){
-
-         if($('#spellList input#' + getClassSpellCheckboxId(this._id)).is(':checked')) {
-         spells.push(this._id);
-
-         }
-
-
-      });
-
-     // If it is, compile all user info into one object
-     var classSpellContents = {
-         'name': $('#createClass input#inputClassName').val(),
-         'spells': spells
-     }
-
-     // Use AJAX to post the object to our adduser service
-     $.ajax({
-         type: 'POST',
-         data: classSpellContents,
-         url: '/api/classspells',
-         dataType: 'JSON'
-     }).done(function( response ) {
-
-         // Check for successful (blank) response
-         if (response.message === "submitted") {
-
-             // Clear the form inputs
-             $('#createClass input#inputClassName').val(''),
-             // Clear the form checkboxes
-             //$('#addSpell fieldset input').prop('checked', false);
-
-             // Update the spells list
-             listClasses();
-         }
-         else {
-             // If something goes wrong, alert the error message that our service returned
-             alert('Error: ' + response.message);
-         }
+     $('#createClass input').each(function(index, val) {
+         if($(this).val() === '') { errorCount++; }
      });
-   });
 
+    // Check and make sure errorCount's still at zero
+    if(errorCount === 0) {
+
+
+       $.getJSON('/api/spells', function( data ) {
+         // For each item in our JSON, add a list element
+         var spells = [];
+
+         $.each(data, function(){
+            if($('#spellList input#' + getClassSpellCheckboxId(this._id)).is(':checked')) {
+            spells.push(this._id);
+            }
+         });
+
+        // If it is, compile all user info into one object
+        var classSpellContents = {
+            'name': $('#createClass input#inputClassName').val(),
+            'spells': spells
+        }
+
+        // Use AJAX to post the object to our adduser service
+        $.ajax({
+            type: 'POST',
+            data: classSpellContents,
+            url: '/api/classspells',
+            dataType: 'JSON'
+        }).done(function( response ) {
+
+            // Check for successful (blank) response
+            if (response.message === "submitted") {
+
+                // Clear the form inputs
+                $('#createClass input#inputClassName').val(''),
+                // Clear the form checkboxes
+                //$('#addSpell fieldset input').prop('checked', false);
+
+                // Update the spells list
+                listClasses();
+            }
+            else {
+                // If something goes wrong, alert the error message that our service returned
+                alert('Error: ' + response.message);
+            }
+        });
+      });
+    }
+    else {
+      // If errorCount is more than 0, error out
+      alert('Please fill in a class name');
+      return false;
+   }
 
 };
 
-function deleteSpell(event) {
+function deleteClass(event) {
    event.preventDefault();
 
-   var clickedSpellId = $(this).attr('rel')
+   var clickedClassId = $(this).attr('rel')
 
    // Pop up a confirmation dialog
-    var confirmation = confirm('Are you sure you want to delete the spell: ' +clickedSpellId+ '?');
+    var confirmation = confirm('Are you sure you want to delete the class: ' +clickedClassId+ '?');
 
     // Check and make sure the user confirmed
     if (confirmation === true) {
@@ -173,7 +179,7 @@ function deleteSpell(event) {
         // If they did, do our delete
         $.ajax({
             type: 'DELETE',
-            url: '/api/spells/' + clickedSpellId
+            url: '/api/classspells/' + clickedClassId
         }).done(function( response ) {
             // Check for a successful (removed) response
             if (response.message === 'removed') {
