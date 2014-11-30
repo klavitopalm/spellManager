@@ -80,6 +80,7 @@ function editClassSpells(event) {
    });
 
    $('.selectedClassHeader').html(" - " + thisClassId);
+   $('#inputClassName').val(thisClassId);
 
 }
 
