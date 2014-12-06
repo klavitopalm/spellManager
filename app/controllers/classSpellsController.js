@@ -13,31 +13,10 @@ exports.postClassSpells = function(req, res) {
   // Set the spell properties that came from the POST data
   classSpells._id = req.body.name;
 
-  //TODO: converting from array to referenced Spell element does not work yet
+
   if(req.body.spells) {
     var arr = req.body.spells.slice();
     classSpells.spells = req.body.spells.slice();
-
-   //  classSpells.spells = req.body.spells.slice();
-
-   // var spellsArray = [];
-
-   // for(var i = 0; i<arr.length; i++) {
-
-      // var id = Mongoose.
-      // spellsArray.push(id);
-      //
-      // console.log("The generated spell: " + id);
-      //
-      // classSpells.spells.push(spellsArray);
-      // Spell.findById(arr[i]).exec(function(err, theSpell) {
-      //
-      //    var _id = new Mongoose.Types.ObjectId(theSpell._id);
-      //    classSpells.spells.push(_id);
-      //
-      // });
-   // }
-// console.log(classSpells.spells);
   }
 
 
