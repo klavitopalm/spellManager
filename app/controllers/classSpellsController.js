@@ -49,6 +49,20 @@ exports.getClassAndSpells = function(req, res) {
    });
 };
 
+
+
+exports.getSingleClassAndSpells = function(req, res) {
+   ClassSpells.find({_id: req.params.class_id}).populate('spells').sort('_id').exec(function(err, singleClass) {
+      if(err)
+         res.send(err);
+
+         res.json(singleClass);
+   });
+};
+
+
+
+
 exports.deleteClass = function(req, res) {
   // Use the ClassSpell model to find a specific class and remove it
   ClassSpells.remove({_id: req.params.class_id }, function(err) {

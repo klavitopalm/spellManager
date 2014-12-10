@@ -2,6 +2,7 @@ var express = require('express');
 var authController = require('./controllers/authController');
 var spellController = require('./controllers/spellController');
 var classSpellsController = require('./controllers/classSpellsController');
+var classController = require('./controllers/classesController');
 var userController = require('./controllers/userController');
 
 // Create our Express router
@@ -28,6 +29,13 @@ router.route('/classspells')
 .get(authController.isAuthenticated, classSpellsController.getClassAndSpells);
 
 router.route('/classspells/:class_id')
+.get(authController.isAuthenticated, classSpellsController.getSingleClassAndSpells)
 .delete(authController.isAuthenticated, classSpellsController.deleteClass);
+
+// Create endpoint handlers for /classes
+router.route('/classes')
+.get(authController.isAuthenticated, classController.getClassesOnly);
+
+
 
 module.exports = router;
