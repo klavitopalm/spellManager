@@ -1,5 +1,9 @@
-<div class="jumbotron text-center">
+<div class="jumbotron">
    <h1>Classes</h1>
 
-   <p>{{ tagline }}</p>
+   <div ng-repeat="myClass in myClasses">
+      {{myClass._id}}
+   </div>
+
+   
 </div>

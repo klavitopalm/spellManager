@@ -1,5 +1,8 @@
-<div class="jumbotron text-center">
+<div class="jumbotron">
    <h1>Spells</h1>
 
-   <p>{{ tagline }}</p>
+   <div ng-repeat="spell in mySpells">
+      {{spell._id}}
+   </div>
+
 </div>
