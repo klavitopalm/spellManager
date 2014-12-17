@@ -7,6 +7,7 @@ exports.postSpell = function(req, res) {
   var spell = new Spell();
 
   // Set the spell properties that came from the POST data
+  spell._id = req.body._id;
   spell.name = req.body.name;
   spell.type = req.body.type;
   spell.level = req.body.level;

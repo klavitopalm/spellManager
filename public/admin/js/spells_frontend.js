@@ -120,6 +120,7 @@ function submitSpell(event) {
 
         // If it is, compile all user info into one object
         var spellContents = {
+            '_id': $('#addSpell fieldset input#inputSpellId').val(),
             'name': $('#addSpell fieldset input#inputSpellName').val(),
             'type': $('#addSpell fieldset input#inputSpellType').val(),
             'level': $('#addSpell fieldset input#inputSpellLevel').val(),
