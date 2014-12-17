@@ -10,8 +10,15 @@ $(function() {
 
    $('#buttonAddClass').on('click', submitClass);
 
+   $('#buttonClearId').on('click', clearId);
+
 
 });
+
+function clearId(event) {
+   event.preventDefault();
+   $('#createClass input#inputClassId').val('');
+}
 
 function listClasses() {
    // Empty content string
@@ -28,7 +35,7 @@ function listClasses() {
          divContent += '<li>';
 
          divContent += '<a href="#" class="linkEditClass" rel="'
-         + this._id + '" title="Edit '+ this._id+'">'+this._id+'</a>';
+         + this._id + '" title="Edit '+ this._id+'">'+this.name+'</a>';
 
          divContent += '<a href="#" class="linkDeleteClass" rel="'
          + this._id + '" title="Delete '+ this._id+'">delete</a>';
@@ -62,9 +69,9 @@ function editClassSpells(event) {
 
          divContent += '<li>';
 
-         divContent += this._id +
-                       ': <input id="' + getClassSpellCheckboxId(this._id) + '" type="checkbox" title="' +
-                       this._id +
+         divContent += this.name +
+                       ': <input id="' + this._id + '" type="checkbox" title="' +
+                       this.name +
                        '">';
 
          divContent += '</li>';
@@ -74,21 +81,18 @@ function editClassSpells(event) {
       checkClassSpells(thisClassObject);
    });
 
-   $('.selectedClassHeader').html(" - " + thisClassId);
-   $('#inputClassName').val(thisClassId);
+   $('.selectedClassHeader').html(" - " + thisClassObject.name);
+   $('#inputClassName').val(thisClassObject.name);
+   $('#inputClassId').val(thisClassId);
 
 }
 
-function getClassSpellCheckboxId(name) {
-   return 'classSpell'+ name.replace(/[^a-zA-Z0-9]/g,'_');
-   //return 'classSpell'+ name.replace(/ /g, '');
-}
 
 function checkClassSpells(selectedClass) {
    // For each item in our JSON, add a list element
    $.each(selectedClass.spells, function(){
 
-      $('#'+getClassSpellCheckboxId(this._id)).prop('checked',true);
+      $('#'+this._id).prop('checked',true);
    });
 }
 
@@ -107,7 +111,7 @@ function submitClass(event) {
     //  // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
 
-     $('#createClass input').each(function(index, val) {
+     $('#inputClassName').each(function(index, val) {
          if($(this).val() === '') { errorCount++; }
      });
 
@@ -120,13 +124,14 @@ function submitClass(event) {
          var spells = [];
 
          $.each(data, function(){
-            if($('#spellList input#' + getClassSpellCheckboxId(this._id)).is(':checked')) {
+            if($('#spellList input#' + this._id).is(':checked')) {
             spells.push(this._id);
             }
          });
 
         // If it is, compile all user info into one object
         var classSpellContents = {
+            '_id': $('#createClass input#inputClassId').val(),
             'name': $('#createClass input#inputClassName').val(),
             'spells': spells
         }
@@ -143,7 +148,8 @@ function submitClass(event) {
             if (response.message === "submitted") {
 
                 // Clear the form inputs
-                $('#createClass input#inputClassName').val(''),
+                $('#createClass input#inputClassId').val('');
+                $('#createClass input#inputClassName').val('');
                 // Clear the form checkboxes
                 //$('#addSpell fieldset input').prop('checked', false);
 
@@ -211,7 +217,8 @@ function editSpell(event) {
 }
 
 function populateSpellInputBoxes(spellObject) {
-   $('#inputSpellName').val(spellObject._id);
+   $('#inputSpellId').val(spellObject._id);
+   $('#inputSpellName').val(spellObject.name);
    $('#inputSpellLevel').val(spellObject.level);
    $('#inputSpellType').val(spellObject.type);
    $('#inputSpellRitual').prop('checked',spellObject.ritual);

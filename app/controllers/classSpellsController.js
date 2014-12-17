@@ -11,12 +11,19 @@ exports.postClassSpells = function(req, res) {
   var classSpells = new ClassSpells();
 
   // Set the spell properties that came from the POST data
-  classSpells._id = req.body.name;
+  classSpells.name = req.body.name;
+  classSpells._id = req.body._id;
 
 
   if(req.body.spells) {
     var arr = req.body.spells.slice();
-    classSpells.spells = req.body.spells.slice();
+    var objIdArr = [];
+    arr.forEach(function(entry) {
+      // objIdArr.push(Mongoose.Types.ObjectId(entry));
+      classSpells.spells.push(Mongoose.Types.ObjectId(entry));
+   });
+   //  classSpells.spells = objIdArr;
+   //  classSpells.spells = req.body.spells.slice();
   }
 
 
@@ -41,7 +48,7 @@ exports.postClassSpells = function(req, res) {
 
 exports.getClassAndSpells = function(req, res) {
    //Use the Spell model to find all spells
-   ClassSpells.find().populate('spells').sort('_id').exec(function(err, classSpells) {
+   ClassSpells.find().populate('spells').sort('name').exec(function(err, classSpells) {
       if (err)
          res.send(err);
 
@@ -52,7 +59,7 @@ exports.getClassAndSpells = function(req, res) {
 
 
 exports.getSingleClassAndSpells = function(req, res) {
-   ClassSpells.find({_id: req.params.class_id}).populate('spells').sort('_id').exec(function(err, singleClass) {
+   ClassSpells.find({_id: req.params.class_id}).populate('spells').sort('name').exec(function(err, singleClass) {
       if(err)
          res.send(err);
 

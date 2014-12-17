@@ -16,8 +16,15 @@ $(function() {
    // Add User button click
    $('#buttonAddSpell').on('click', submitSpell);
 
+   $('#buttonClearId').on('click', clearId);
 
 });
+
+function clearId(event) {
+   event.preventDefault();
+   $('#addSpell input#inputSpellId').val('');
+}
+
 
 function listSpells() {
    // Empty content string
@@ -32,7 +39,7 @@ function listSpells() {
       $.each(data, function(){
 
          divContent += '<li><a href="#" class="linkShowSpell" rel="'
-         + this._id + '" title="Show Details">' + this._id
+         + this._id + '" title="Show Details">' + this.name
          + '</a>';
 
          divContent += '<a href="#" class="linkDeleteSpell" rel="'
@@ -75,7 +82,8 @@ function getSpellObjectFromId(id) {
 }
 
 function populateSpellInfoBoxes(spellObject) {
-   $('#spellName').text(spellObject._id);
+   $('#spellId').text(spellObject._id);
+   $('#spellName').text(spellObject.name);
    $('#spellLevel').text(spellObject.level);
    $('#spellType').text(spellObject.type);
    $('#spellRitual').prop('checked',spellObject.ritual);
@@ -213,7 +221,8 @@ function editSpell(event) {
 }
 
 function populateSpellInputBoxes(spellObject) {
-   $('#inputSpellName').val(spellObject._id);
+   $('#inputSpellId').val(spellObject._id);
+   $('#inputSpellName').val(spellObject.name);
    $('#inputSpellLevel').val(spellObject.level);
    $('#inputSpellType').val(spellObject.type);
    $('#inputSpellRitual').prop('checked',spellObject.ritual);

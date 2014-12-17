@@ -7,7 +7,7 @@ exports.postSpell = function(req, res) {
   var spell = new Spell();
 
   // Set the spell properties that came from the POST data
-  spell._id = req.body.name;
+  spell.name = req.body.name;
   spell.type = req.body.type;
   spell.level = req.body.level;
   spell.ritual = req.body.ritual;
@@ -50,7 +50,7 @@ exports.postSpell = function(req, res) {
 // Create endpoint /api/spells for GET
 exports.getSpells = function(req, res) {
   // Use the Spell model to find all spells
-  Spell.find().sort('_id').exec(function(err, spells) {
+  Spell.find().sort('name').exec(function(err, spells) {
     if (err)
       res.send(err);
 

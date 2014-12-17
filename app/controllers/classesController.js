@@ -4,7 +4,7 @@ var Spell = require('../models/spell.js');
 var Mongoose = require('mongoose');
 
 exports.getClassesOnly = function(req, res) {
-   ClassSpells.find().sort('_id').exec(function(err, classesOnly) {
+   ClassSpells.find().sort('name').exec(function(err, classesOnly) {
       if(err)
          res.send(err);
 

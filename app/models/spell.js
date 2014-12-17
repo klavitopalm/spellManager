@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 
 // Define our spell schema
 var SpellSchema = new mongoose.Schema({
-  _id: String,
   type: String,
   level: Number,
   ritual: Boolean,
@@ -26,6 +25,7 @@ var SpellSchema = new mongoose.Schema({
     concentration : Boolean
   },
   description : String,
+  name: String
 });
 
 // Export the Mongoose model

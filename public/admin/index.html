@@ -22,6 +22,9 @@
 
 
       <div id="spellInfo">
+         <div>Id:
+            <span id='spellId'></span>
+         </div>
          <div>Name:
            <span id='spellName'></span>
          </div>
@@ -61,6 +64,10 @@
       <h2>Add Spell</h2>
         <div id="addSpell">
             <fieldset>
+               Id: <input id="inputSpellId"type="text", placeholder="Id" readonly>
+               <button id="buttonClearId" type="button" >Clear Id</button>
+               <br />
+               
                Name: <input id="inputSpellName"type="text", placeholder="Name"><br />
                Level: <input id="inputSpellLevel"type="number", placeholder="Level"><br />
                Type: <input id="inputSpellType"type="text", placeholder="Type"><br />
