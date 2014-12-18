@@ -1,21 +1,31 @@
 <div class="jumbotron">
    <h1>Classes</h1>
 
-   <div style="float: right">
-      <ul   ng-repeat="spell in selectedClassSpells">
-         <li><a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a></li>
-      </ul>
+   <div class="row">
+
+      <div class="col-sm-3">
+         <h2>Classes</h2>
+         <ul class="nav nav-pills" ng-repeat="singleClass in playerClasses">
+            <li ng-class="{ active: isActiveClass(singleClass._id) }">
+               <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
+            </li>
+         </ul>
+      </div>
+
+      <div class="col-sm-3">
+         <h2>Spells</h2>
+         <ul class="nav nav-pills" ng-repeat="spell in selectedClassSpells">
+            <li ng-class="{ active: isActiveSpell(spell._id) }">
+               <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+            </li>
+         </ul>
+
+      </div>
+
+      <div class="col-sm-6">
+         <br />
+         <div>{{selectedSpell.name}}</div>
+         <div>{{selectedSpell.description}}</div>
+      </div>
+
    </div>
-
-
-   <div ng-repeat="singleClass in playerClasses">
-      <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
-   </div>
-
-<div>
-   <br />
-   <div>{{selectedSpell.name}}</div>
-   <div>{{selectedSpell.description}}</div>
-</div>
-
-</div>
