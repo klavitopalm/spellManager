@@ -23,17 +23,128 @@
             <div class="panel-heading">
                <h3 class="panel-title">Spells</h3>
             </div>
-            <div class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in selectedClassSpells">
+
+            <div ng-show="spellsLevel0.length" class="panel-heading">
+                  <div>Level 0</div>
+            </div>
+            <div ng-show="spellsLevel0.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel0">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
                </ul>
             </div>
-            <!-- <div class="panel-heading">Level 4</div>
-            <div class="panel-body">
-               <div>asdfaj d;aklj dl;aj s;dlkfj al;dj fal;dj a;slkdfj as;dfj a;sldkj fa;lksdj fk;lsadj f;</div>
-            </div> -->
+
+            <div ng-show="spellsLevel1.length" class="panel-heading">
+               <div>Level 1</div>
+            </div>
+            <div ng-show="spellsLevel1.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel1">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel2.length" class="panel-heading">
+               <div>Level 2</div>
+            </div>
+            <div ng-show="spellsLevel2.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel2">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel3.length" class="panel-heading">
+               <div>Level 3</div>
+            </div>
+            <div ng-show="spellsLevel3.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel3">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel4.length" class="panel-heading">
+               <div>Level 4</div>
+            </div>
+            <div ng-show="spellsLevel4.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel4">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel5.length" class="panel-heading">
+               <div>Level 5</div>
+            </div>
+            <div ng-show="spellsLevel5.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel5">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel6.length" class="panel-heading">
+               <div>Level 6</div>
+            </div>
+            <div ng-show="spellsLevel6.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel6">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel7.length" class="panel-heading">
+               <div>Level 7</div>
+            </div>
+            <div ng-show="spellsLevel7.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel7">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel8.length" class="panel-heading">
+               <div>Level 8</div>
+            </div>
+            <div ng-show="spellsLevel8.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel8">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel9.length" class="panel-heading">
+               <div>Level 9</div>
+            </div>
+            <div ng-show="spellsLevel9.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel9">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
+            <div ng-show="spellsLevel10.length" class="panel-heading">
+               <div>Level 10</div>
+            </div>
+            <div ng-show="spellsLevel10.length" class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel10">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+
          </div>
       </div>
 
