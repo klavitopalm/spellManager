@@ -1,28 +1,20 @@
-angular.module('ClassesCtrl', []).controller('ClassesController', function($http, $scope) {
+angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService']).controller('ClassesController', function($http, $scope, ClassesWithSpells, Classes) {
 
-   $http.get('/api/classes')
-   .success(function(data) {
+
+   Classes.get(function(data) {
       $scope.playerClasses = data;
-      console.log(data);
-   })
-   .error(function(data) {
-      console.log('Error: ' + data);
    });
 
    var activeClassId;
 
    $scope.showSpells = function(id) {
-      $http.get('/api/classspells/'+id)
-      .success(function(data) {
+   ClassesWithSpells.get(id, function (data) {
+      $scope.testAccounts = data;
          var temp = data[0];
          $scope.selectedClassSpells = temp.spells;
          $scope.selectedSpell = '';
          activeClassId = id;
-         console.log(data);
       })
-      .error(function(data) {
-         console.log('Error: ' + data);
-      });
    }
 
    $scope.showSpellDetails = function(spell) {
