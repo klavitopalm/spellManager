@@ -1,9 +1,11 @@
 angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
    .controller('ClassesController', function($http, $scope, ClassesWithSpells, Classes) {
 
-
+   $scope.selectedSpell = '';
+   
    Classes.get(function(data) {
       $scope.playerClasses = data;
+      $scope.selectedSpell = '';
    });
 
    var activeClassId;
@@ -97,5 +99,12 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
       var isActive = (id === $scope.selectedSpell._id);
       return isActive;
    };
+
+   $scope.isAnySpellSelected = function() {
+      var isAnySpellSelected = ($scope.selectedSpell !== '');
+      return isAnySpellSelected;
+   };
+
+
 
 });

@@ -1,3 +1,7 @@
-/*.active {
+.spellDetailName {
    font-weight: bold;
-}*/
+}
+
+.spellDetailTypeAndLevel {
+   font-style: italic;
+}
