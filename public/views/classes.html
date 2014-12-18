@@ -1,9 +1,21 @@
 <div class="jumbotron">
    <h1>Classes</h1>
 
-   <div ng-repeat="myClass in myClasses">
-      {{myClass.name}}
+   <div style="float: right">
+      <ul   ng-repeat="spell in selectedClassSpells">
+         <li><a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a></li>
+      </ul>
    </div>
 
+
+   <div ng-repeat="singleClass in playerClasses">
+      <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
+   </div>
+
+<div>
+   <br />
+   <div>{{selectedSpell.name}}</div>
+   <div>{{selectedSpell.description}}</div>
+</div>
 
 </div>

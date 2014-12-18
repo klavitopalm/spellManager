@@ -5,7 +5,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 
    .when('/', {
       templateUrl: 'views/classes.html',
-      controller: 'ClassesController'
+      controller: 'ClassesController',
    })
 
    .when('/spells', {
