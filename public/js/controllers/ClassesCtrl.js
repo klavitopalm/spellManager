@@ -14,7 +14,7 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService']).co
          $scope.selectedClassSpells = temp.spells;
          $scope.selectedSpell = '';
          activeClassId = id;
-      })
+      });
    }
 
    $scope.showSpellDetails = function(spell) {
