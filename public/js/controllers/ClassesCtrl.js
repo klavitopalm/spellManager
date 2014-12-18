@@ -8,7 +8,7 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService']).co
    var activeClassId;
 
    $scope.showSpells = function(id) {
-   ClassesWithSpells.get(id, function (data) {
+   ClassesWithSpells.get(id, function(data) {
       $scope.testAccounts = data;
          var temp = data[0];
          $scope.selectedClassSpells = temp.spells;
@@ -19,17 +19,16 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService']).co
 
    $scope.showSpellDetails = function(spell) {
       $scope.selectedSpell = spell;
-   }
-
-
-   $scope.isActiveClass = function (id) {
-      var active = (id === activeClassId);
-      return active;
    };
 
-   $scope.isActiveSpell = function (id) {
-      var active = (id === $scope.selectedSpell._id);
-      return active;
+   $scope.isActiveClass = function(id) {
+      var isActive = (id === activeClassId);
+      return isActive;
+   };
+
+   $scope.isActiveSpell = function(id) {
+      var isActive = (id === $scope.selectedSpell._id);
+      return isActive;
    };
 
 });
