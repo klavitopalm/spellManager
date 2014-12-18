@@ -1,31 +1,53 @@
 <div class="jumbotron">
-   <h1>Classes</h1>
+   <h2>Classes</h2>
 
    <div class="row">
 
       <div class="col-sm-3">
-         <h2>Classes</h2>
-         <ul class="nav nav-pills" ng-repeat="singleClass in playerClasses">
-            <li ng-class="{ active: isActiveClass(singleClass._id) }">
-               <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
-            </li>
-         </ul>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Classes</h3>
+            </div>
+            <div class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="singleClass in playerClasses">
+                  <li ng-class="{ active: isActiveClass(singleClass._id) }">
+                     <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
       </div>
 
       <div class="col-sm-3">
-         <h2>Spells</h2>
-         <ul class="nav nav-pills" ng-repeat="spell in selectedClassSpells">
-            <li ng-class="{ active: isActiveSpell(spell._id) }">
-               <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
-            </li>
-         </ul>
-
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h3 class="panel-title">Spells</h3>
+            </div>
+            <div class="panel-body">
+               <ul class="nav nav-pills" ng-repeat="spell in selectedClassSpells">
+                  <li ng-class="{ active: isActiveSpell(spell._id) }">
+                     <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  </li>
+               </ul>
+            </div>
+            <!-- <div class="panel-heading">Level 4</div>
+            <div class="panel-body">
+               <div>asdfaj d;aklj dl;aj s;dlkfj al;dj fal;dj a;slkdfj as;dfj a;sldkj fa;lksdj fk;lsadj f;</div>
+            </div> -->
+         </div>
       </div>
 
       <div class="col-sm-6">
-         <br />
-         <div>{{selectedSpell.name}}</div>
-         <div>{{selectedSpell.description}}</div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <h2 class="panel-title">Spell Details</h2>
+            </div>
+            <div class="panel-body">
+               <h5>{{selectedSpell.name}}</h5>
+               <div>{{selectedSpell.description}}</div>
+            </div>
+
+         </div>
       </div>
 
    </div>
