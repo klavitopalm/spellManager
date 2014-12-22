@@ -1,7 +1,15 @@
+body {
+   background-color: #eee;
+}
+
 .spellDetailName {
    font-weight: bold;
 }
 
 .spellDetailTypeAndLevel {
    font-style: italic;
+}
+
+.spellsNav>li>a {
+   padding: 4px 15px;
 }

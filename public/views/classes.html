@@ -1,6 +1,4 @@
-<div class="jumbotron">
-   <h2>Classes</h2>
-
+<!-- <div class="jumbotron"> -->
    <div class="row">
 
       <div class="col-sm-3">
@@ -9,7 +7,7 @@
                <h3 class="panel-title">Classes</h3>
             </div>
             <div class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="singleClass in playerClasses">
+               <ul class="nav nav-pills spellsNav" ng-repeat="singleClass in playerClasses">
                   <li ng-class="{ active: isActiveClass(singleClass._id) }">
                      <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
                   </li>
@@ -28,7 +26,7 @@
                   <div>Level 0</div>
             </div>
             <div ng-show="spellsLevel0.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel0">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel0">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -39,7 +37,7 @@
                <div>Level 1</div>
             </div>
             <div ng-show="spellsLevel1.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel1">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel1">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -50,7 +48,7 @@
                <div>Level 2</div>
             </div>
             <div ng-show="spellsLevel2.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel2">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel2">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -61,7 +59,7 @@
                <div>Level 3</div>
             </div>
             <div ng-show="spellsLevel3.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel3">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel3">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -72,7 +70,7 @@
                <div>Level 4</div>
             </div>
             <div ng-show="spellsLevel4.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel4">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel4">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -83,7 +81,7 @@
                <div>Level 5</div>
             </div>
             <div ng-show="spellsLevel5.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel5">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel5">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -94,7 +92,7 @@
                <div>Level 6</div>
             </div>
             <div ng-show="spellsLevel6.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel6">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel6">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -105,7 +103,7 @@
                <div>Level 7</div>
             </div>
             <div ng-show="spellsLevel7.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel7">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel7">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -116,7 +114,7 @@
                <div>Level 8</div>
             </div>
             <div ng-show="spellsLevel8.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel8">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel8">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -127,7 +125,7 @@
                <div>Level 9</div>
             </div>
             <div ng-show="spellsLevel9.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel9">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel9">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -138,7 +136,7 @@
                <div>Level 10</div>
             </div>
             <div ng-show="spellsLevel10.length" class="panel-body">
-               <ul class="nav nav-pills" ng-repeat="spell in spellsLevel10">
+               <ul class="nav nav-pills spellsNav" ng-repeat="spell in spellsLevel10">
                   <li ng-class="{ active: isActiveSpell(spell._id) }">
                      <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                   </li>
@@ -166,4 +164,4 @@
          </div>
       </div>
 
-   </div>
+<!-- </div> -->

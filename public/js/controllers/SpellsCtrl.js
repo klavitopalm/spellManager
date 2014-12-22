@@ -1,14 +1,25 @@
-angular.module('SpellsCtrl', []).controller('SpellsController', function($scope, $http) {
+angular.module('SpellsCtrl', ['SpellsService']).controller('SpellsController', function($scope, $http, Spells) {
 
-   // when landing on the page, get all todos and show them
-   $http.get('/api/spells')
-   .success(function(data) {
-      $scope.mySpells = data;
-      console.log(data);
-   })
-   .error(function(data) {
-      console.log('Error: ' + data);
+   $scope.selectedSpell = '';
+
+   Spells.get(function(data) {
+      $scope.selectedSpell = '';
+      $scope.allSpells = data;
+
    });
 
+   $scope.showSpellDetails = function(spell) {
+      $scope.selectedSpell = spell;
+   };
+
+   $scope.isActiveSpell = function(id) {
+      var isActive = (id === $scope.selectedSpell._id);
+      return isActive;
+   };
+
+   $scope.isAnySpellSelected = function() {
+      var isAnySpellSelected = ($scope.selectedSpell !== '');
+      return isAnySpellSelected;
+   };
 
 });
