@@ -3,12 +3,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
 
    $routeProvider
 
-   .when('/spells', {
+   .when('/', {
       templateUrl: 'views/classes.html',
       controller: 'ClassesController',
    })
 
-   .when('/', {
+   .when('/spells', {
       templateUrl: 'views/spells.html',
       controller: 'SpellsController'
    });
