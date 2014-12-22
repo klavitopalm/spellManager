@@ -1,1 +1,1 @@
-angular.module('sampleApp', ['ngRoute', 'appRoutes', 'ClassesCtrl', 'SpellsCtrl']);
+angular.module('sampleApp', ['ngRoute', 'appRoutes', 'ClassesCtrl', 'SpellsCtrl', 'SpellFilters']);
