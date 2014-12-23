@@ -6,7 +6,7 @@
             <div class="panel-heading">
                <h3 class="panel-title">Classes</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="max-height: calc(100vh - 125px); overflow-y:auto;">
                <ul class="nav nav-pills spellsNav" ng-repeat="singleClass in playerClasses">
                   <li ng-class="{ active: isActiveClass(singleClass._id) }">
                      <a href="#" ng-click="showSpells(singleClass._id)">{{singleClass.name}}</a>
@@ -21,7 +21,9 @@
             <div class="panel-heading">
                <h3 class="panel-title">Spells</h3>
             </div>
+         </div>
 
+         <div class="panel panel-default" style="max-height: calc(100vh - 145px); overflow-y:auto;" ng-show="isThereASpellToDisplay()">
             <div ng-show="spellsLevel0.length" class="panel-heading">
                   <div>Level 0</div>
             </div>
@@ -142,8 +144,8 @@
                   </li>
                </ul>
             </div>
-
          </div>
+
       </div>
 
       <div class="col-sm-6">

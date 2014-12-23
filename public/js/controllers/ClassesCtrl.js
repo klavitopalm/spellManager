@@ -80,7 +80,6 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
          $scope.spellsLevel10 = spellsLevel10;
 
          var temp = data[0];
-         $scope.selectedClassSpells = temp.spells;
          $scope.selectedSpell = '';
          activeClassId = id;
       });
@@ -106,6 +105,45 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
       return isAnySpellSelected;
    };
 
+   $scope.isThereASpellToDisplay = function() {
+      var isThereASpellToDisplay = false;
+
+      if($scope.spellsLevel0 && $scope.spellsLevel0.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel1 && $scope.spellsLevel1.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel2 && $scope.spellsLevel2.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel3 && $scope.spellsLevel3.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel4 && $scope.spellsLevel4.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel5 && $scope.spellsLevel5.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel6 && $scope.spellsLevel6.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel7 && $scope.spellsLevel7.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel8 && $scope.spellsLevel8.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel9 && $scope.spellsLevel9.length) {
+         isThereASpellToDisplay = true;
+      }
+      else if($scope.spellsLevel10 && $scope.spellsLevel10.length) {
+         isThereASpellToDisplay = true;
+      }
+
+      return isThereASpellToDisplay;
+   };
 
 
 });
