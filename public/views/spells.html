@@ -24,7 +24,7 @@
          <div class="panel-heading">
             <h2 class="panel-title">Spell Details</h2>
          </div>
-         <div class="panel-body" ng-show="isAnySpellSelected()">
+         <div class="panel-body autoHeightClasses" ng-show="isAnySpellSelected()">
             <h5 class="spellDetailName">{{selectedSpell.name}}</h5>
             <div class="spellDetailTypeAndLevel">Level {{selectedSpell.level}} {{selectedSpell.type}}</div>
             <div><strong>Casting Time:</strong> {{selectedSpell.castingTime.value}} {{selectedSpell.castingTime.unit}}</div>

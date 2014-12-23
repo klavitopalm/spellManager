@@ -1,5 +1,6 @@
 body {
    background-color: #eee;
+   overflow-y: hidden;
 }
 
 .spellDetailName {
@@ -16,10 +17,10 @@ body {
 
 .autoHeightClasses {
    max-height: calc(100vh - 125px);
-   overflow-y:auto;
+   overflow-y: auto;
 }
 
 .autoHeightSpellsWithLevels {
    max-height: calc(100vh - 145px);
-   overflow-y:auto;
+   overflow-y: auto;
 }
