@@ -6,7 +6,7 @@
             <h3 class="panel-title">Spells</h3>
          </div>
 
-         <div class="panel-body">
+         <div class="panel-body autoHeightClasses">
             <ul class="nav nav-pills spellsNav" ng-repeat="spell in allSpells">
                <li ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
