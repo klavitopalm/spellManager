@@ -1,8 +1,11 @@
 angular.module('SpellFilters', []).filter('spellRange', function() {
    return function(range, description) {
-      var ouput = "";
+      var output = "";
       if(description === "") {
-         if(range >= 5280) {
+         if(!range) {
+            output = description;
+         }
+         else if(range >= 5280) {
             var miles = range / 5280;
             var remainder  = range % 5280
             output = miles + getMilesString(miles) + " " + remainder + getFeetString(remainder);
@@ -12,7 +15,7 @@ angular.module('SpellFilters', []).filter('spellRange', function() {
          }
       }
       else {
-         output =  range + description;
+         output =  range ? range : '' + description;
       }
       return output;
    };
