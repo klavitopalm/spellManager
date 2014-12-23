@@ -13,3 +13,13 @@ body {
 .spellsNav>li>a {
    padding: 4px 15px;
 }
+
+.autoHeightClasses {
+   max-height: calc(100vh - 125px);
+   overflow-y:auto;
+}
+
+.autoHeightSpellsWithLevels {
+   max-height: calc(100vh - 145px);
+   overflow-y:auto;
+}
