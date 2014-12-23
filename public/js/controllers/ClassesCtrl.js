@@ -2,7 +2,7 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
    .controller('ClassesController', function($http, $scope, ClassesWithSpells, Classes) {
 
    $scope.selectedSpell = '';
-   
+
    Classes.get(function(data) {
       $scope.playerClasses = data;
       $scope.selectedSpell = '';
@@ -88,6 +88,7 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
 
    $scope.showSpellDetails = function(spell) {
       $scope.selectedSpell = spell;
+      $scope.descriptionLinesOfSelectedSpell = spell.description.split(/\r\n|\r|\n/g);
    };
 
    $scope.isActiveClass = function(id) {

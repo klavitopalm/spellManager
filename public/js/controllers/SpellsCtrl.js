@@ -10,6 +10,7 @@ angular.module('SpellsCtrl', ['SpellsService']).controller('SpellsController', f
 
    $scope.showSpellDetails = function(spell) {
       $scope.selectedSpell = spell;
+      $scope.descriptionLinesOfSelectedSpell = spell.description.split(/\r\n|\r|\n/g);
    };
 
    $scope.isActiveSpell = function(id) {

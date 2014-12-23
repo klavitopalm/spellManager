@@ -72,20 +72,4 @@ angular.module('SpellFilters', []).filter('spellRange', function() {
 
       return output;
    };
-
-})
-.filter('spellDescription', function() {
-   return function(input) {
-      if(input) {
-         var lines = input.split(/\r\n|\r|\n/g);
-         var output = '';
-
-         angular.forEach(lines, function(singleLine) {
-            output += singleLine + "\n";
-         });
-         return output;
-      }
-      return input;
-   };
-
 });
