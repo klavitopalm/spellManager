@@ -6,9 +6,9 @@ angular.module('SpellFilters', []).filter('spellRange', function() {
             output = description;
          }
          else if(range >= 5280) {
-            var miles = range / 5280;
+            var miles = Math.floor(range / 5280);
             var remainder  = range % 5280
-            output = miles + getMilesString(miles) + " " + remainder + getFeetString(remainder);
+            output = miles + getMilesString(miles) + ((remainder == 0) ? '' : (' ' + remainder + getFeetString(remainder)));
          }
          else {
             output = range + getFeetString(range);
