@@ -38,6 +38,22 @@ app.use(express.static(__dirname + '/public'));
 // Register all our routes with /api
 app.use('/api', router);
 
+
+
+app.get('/', function(req, res) {
+   res.render('index');
+});
+
+app.get('/views/:name', function (req, res) {
+   var name = req.params.name;
+   res.render('views/' + name);
+});
+
+app.get('*', function(req, res) {
+   res.redirect('/');
+});
+
+
 // Start the server
 var port = 3000;
 app.listen(process.env.PORT || port);
