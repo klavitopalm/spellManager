@@ -1,4 +1,7 @@
+<a href="#" scroll-to="blubb">blubbAnchor</a>
+<h1>{{getAnchors()}}</h1>
 <div class="row">
+
 
    <div class="col-sm-4">
       <div class="panel panel-default">
@@ -6,12 +9,13 @@
             <h3 class="panel-title">Spells</h3>
          </div>
 
-         <div class="panel-body autoHeightClasses">
+         <div class="panel-body autoHeightSpells">
             <ul class="nav nav-pills spellsNav" ng-repeat="spell in allSpells">
                <li ng-class="{ active: isActiveSpell(spell._id) }">
-                  <a href="#" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
+                  <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                </li>
             </ul>
+            <a id="blubb">blubb</a>
          </div>
 
 
@@ -24,7 +28,7 @@
          <div class="panel-heading">
             <h2 class="panel-title">Spell Details</h2>
          </div>
-         <div class="panel-body autoHeightClasses" ng-show="isAnySpellSelected()">
+         <div class="panel-body autoHeightSpells" ng-show="isAnySpellSelected()">
             <h5 class="spellDetailName">{{selectedSpell.name}}</h5>
             <div class="spellDetailTypeAndLevel">Level {{selectedSpell.level}} {{selectedSpell.type}}</div>
             <div><strong>Casting Time:</strong> {{selectedSpell.castingTime.value}} {{selectedSpell.castingTime.unit}}</div>

@@ -24,3 +24,8 @@ body {
    max-height: calc(100vh - 145px);
    overflow-y: auto;
 }
+
+.autoHeightSpells {
+   max-height: calc(100vh - 155px);
+   overflow-y: auto;
+}

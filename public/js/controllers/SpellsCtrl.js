@@ -1,4 +1,4 @@
-angular.module('SpellsCtrl', ['SpellsService']).controller('SpellsController', function($scope, $http, Spells) {
+angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controller('SpellsController', function($scope, $http, Spells, SpellAnchors) {
 
    $scope.selectedSpell = '';
 
@@ -22,5 +22,9 @@ angular.module('SpellsCtrl', ['SpellsService']).controller('SpellsController', f
       var isAnySpellSelected = ($scope.selectedSpell !== '');
       return isAnySpellSelected;
    };
+
+   $scope.getAnchors = function() {
+      return SpellAnchors.getAnchors('blubb');
+   }
 
 });

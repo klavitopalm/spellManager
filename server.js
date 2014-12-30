@@ -21,7 +21,7 @@ app.use(compression());
 
 // Add static middleware
 var oneDay = 86400000;
-app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+// app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
 
 
 // Use the body-parser package in our application
