@@ -5,7 +5,7 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controlle
    Spells.get(function(data) {
       $scope.selectedSpell = '';
       $scope.allSpells = data;
-
+      $scope.anchors = SpellAnchors.getAnchors($scope.allSpells);
    });
 
    $scope.showSpellDetails = function(spell) {
@@ -23,8 +23,8 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controlle
       return isAnySpellSelected;
    };
 
-   $scope.getAnchors = function() {
-      return SpellAnchors.getAnchors('blubb');
+   $scope.isAnchorAvailable = function(letter) {
+      return (letter in $scope.anchors);
    }
 
 });

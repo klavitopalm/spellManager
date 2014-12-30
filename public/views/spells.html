@@ -1,25 +1,23 @@
-<a href="#" scroll-to="blubb">blubbAnchor</a>
-<h1>{{getAnchors()}}</h1>
+
+<div class="btn-toolbar" role="toolbar">
+   <div class="btn-group" role="group" >
+      <button type="button" class="btn btn-default" ng-repeat="(key, value) in anchors" scroll-to="{{value}}">{{key}}</button>
+   </div>
+</div>
+
 <div class="row">
-
-
    <div class="col-sm-4">
       <div class="panel panel-default">
          <div class="panel-heading">
             <h3 class="panel-title">Spells</h3>
          </div>
-
          <div class="panel-body autoHeightSpells">
             <ul class="nav nav-pills spellsNav" ng-repeat="spell in allSpells">
                <li ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                </li>
             </ul>
-            <a id="blubb">blubb</a>
          </div>
-
-
-
       </div>
    </div>
 

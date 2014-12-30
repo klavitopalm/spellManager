@@ -26,6 +26,10 @@ body {
 }
 
 .autoHeightSpells {
-   max-height: calc(100vh - 155px);
+   max-height: calc(100vh - 180px);
    overflow-y: auto;
+}
+
+.btn-toolbar {
+   margin-bottom: 10px;
 }
