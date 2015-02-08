@@ -240,7 +240,7 @@ function populateSpellInputBoxes(spellObject) {
    $('#inputSpellComponentsMaterialDescription').val(spellObject.components.materialDescription);
 
    $('#inputSpellDurationAmount').val(spellObject.duration.amount);
-   $('#inputSpellDurationConcentration').prop('checked',spellObject.components.concentration);
+   $('#inputSpellDurationConcentration').prop('checked',spellObject.duration.concentration);
 
    $('#inputSpellDescription').val(spellObject.description);
 }
