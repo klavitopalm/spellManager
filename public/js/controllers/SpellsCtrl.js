@@ -1,5 +1,17 @@
 angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controller('SpellsController', function($scope, $http, Spells, SpellAnchors) {
 
+
+   $scope.allSpellSchools = [
+      {name:'Abjuration', isVisible:true},
+      {name:'Conjuration', isVisible:true},
+      {name:'Divination', isVisible:true},
+      {name:'Enchantment', isVisible:true},
+      {name:'Evocation', isVisible:true},
+      {name:'Illusion', isVisible:true},
+      {name:'Necromancy', isVisible:true},
+      {name:'Transmutation', isVisible:true}
+   ];
+
    $scope.selectedSpell = '';
 
    Spells.get(function(data) {

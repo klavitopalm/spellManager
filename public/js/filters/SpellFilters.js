@@ -1,4 +1,5 @@
-angular.module('SpellFilters', []).filter('spellRange', function() {
+angular.module('SpellFilters', [])
+.filter('spellRange', function() {
    return function(range, description) {
       var output = "";
       if(description === "") {
