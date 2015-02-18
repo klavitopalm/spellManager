@@ -20,8 +20,8 @@ var app = express();
 app.use(compression());
 
 // Add static middleware
-//var oneDay = 86400000;
-var oneDay = 1;
+var oneDay = 86400000;
+// var oneDay = 1;
 app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
 
 

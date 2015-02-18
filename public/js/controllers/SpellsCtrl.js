@@ -1,5 +1,6 @@
 angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFilterVisibility']).controller('SpellsController', function($scope, $http, Spells, SpellAnchors, VisibleSpells) {
 
+   $scope.showFilters = false;
 
    $scope.allSpellSchools = [
       {name:'Abjuration', isVisible:true},
@@ -33,7 +34,6 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
 
    $scope.selectedSpell = '';
 
-   $scope.showFilters = true;
 
    Spells.get(function(data) {
       $scope.selectedSpell = '';
