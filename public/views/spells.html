@@ -1,5 +1,17 @@
 <div class="row">
 
+   <div class="col-sm-1">
+      <div class="panel panel-default">
+
+            <div class="checkbox" style="margin-left: 10px">
+               <label>
+                  <input type="checkbox" ng-model="showFilters" ng-checked="showFilters"> filters
+               </label>
+            </div>
+      </div>
+   </div>
+
+
    <div class="col-sm-3">
 
       <div class="panel panel-default">
@@ -7,7 +19,7 @@
             <h3 class="panel-title">Spell School</h3>
          </div>
 
-         <div class="list-group">
+         <div class="list-group"  ng-show="showFilters">
             <div class="checkbox list-group-item" ng-repeat="spellSchool in allSpellSchools">
                <label>
                   <input type="checkbox" ng-model="spellSchool.isVisible" ng-checked="spellSchool.isVisible"> {{spellSchool.name}}
@@ -32,7 +44,7 @@
          <div class="panel-heading">
             <h3 class="panel-title">Spells</h3>
          </div>
-         <div class="panel-body autoHeightSpells">
+         <div class="panel-body autoHeightSpells" ng-class="{autoHeightSpellsWithFilter : showFilters}">
             <ul class="nav nav-pills nav-stacked spellsNav">
                <li ng-repeat="spell in allVisibleSpells(allSpellSchools)" ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
@@ -47,7 +59,7 @@
          <div class="panel-heading">
             <h2 class="panel-title">Spell Details</h2>
          </div>
-         <div class="panel-body autoHeightSpells" ng-show="isAnySpellSelected()">
+         <div class="panel-body autoHeightSpells" ng-class="{autoHeightSpellsWithFilter : showFilters}" ng-show="isAnySpellSelected()">
             <h5 class="spellDetailName">{{selectedSpell.name}}</h5>
             <div class="spellDetailTypeAndLevel">Level {{selectedSpell.level}} {{selectedSpell.type}}</div>
             <div><strong>Casting Time:</strong> {{selectedSpell.castingTime.value}} {{selectedSpell.castingTime.unit}}</div>

@@ -14,6 +14,8 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
 
    $scope.selectedSpell = '';
 
+   $scope.showFilters = true;
+
    Spells.get(function(data) {
       $scope.selectedSpell = '';
       $scope.allSpells = data;
