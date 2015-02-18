@@ -22,8 +22,13 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
       {level: 6, isVisible: true},
       {level: 7, isVisible: true},
       {level: 8, isVisible: true},
-      {level: 9, isVisible: true},
+      {level: 9, isVisible: true}
    ];
+
+   $scope.spellConcentration = {name: 'hide non concentration', hideOthers: false};
+
+   $scope.spellRitual = {name: 'hide non ritual', hideOthers: false};
+
 
 
    $scope.selectedSpell = '';
@@ -55,8 +60,8 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
       return (letter in $scope.anchors);
    };
 
-   $scope.allVisibleSpells = function(spellSchools, spellLevels) {
-      var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools, spellLevels);
+   $scope.allVisibleSpells = function(spellSchools, spellLevels, spellConcentration) {
+      var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools, spellLevels, spellConcentration);
 
       updateSpellAnchors(visibleSpells);
       return visibleSpells;

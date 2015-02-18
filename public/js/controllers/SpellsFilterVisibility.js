@@ -16,11 +16,13 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
             return spellObjectsToBeShown;
          },
 
-         getSpellsToShow : function(spells, spellSchools, spellLevels) {
+         getSpellsToShow : function(spells, spellSchools, spellLevels, spellConcentration) {
             var visibleSpellSchoolSpells = getSpellIdsForSpellSchools(spells, spellSchools);
-            var visibleSpellSchoolLevels = getSpellIdsForSpellLevels(spells, spellLevels);
+            var visibleSpellLevelSpells = getSpellIdsForSpellLevels(spells, spellLevels);
+            var visibleSpellConcentration = getSpellIdsForSpellConcentration(spells, spellConcentration);
 
-            var allVisibleSpellIds = getIdCutSet(visibleSpellSchoolLevels, visibleSpellSchoolSpells);
+            var allVisibleSpellIds = getIdCutSet(visibleSpellLevelSpells, visibleSpellSchoolSpells);
+            var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellConcentration);
 
             var visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
             return visibleSpells;
@@ -80,6 +82,25 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
 
             this.push.apply(this, spellsForThisSpellLevel);
          }, allVisibleSpellIds);
+         return allVisibleSpellIds;
+      }
+
+      function getSpellIdsForSpellConcentration(spells, spellConcentration) {
+         var allVisibleSpellIds = [];
+
+         if(spellConcentration.hideOthers) {
+            angular.forEach(spells, function(spell) {
+               if(spell.duration.concentration) {
+                  this.push(spell._id);
+               }
+            }, allVisibleSpellIds);
+         }
+         else {
+            angular.forEach(spells, function(spell) {
+                  this.push(spell._id);
+            }, allVisibleSpellIds);
+         }
+
          return allVisibleSpellIds;
       }
 });

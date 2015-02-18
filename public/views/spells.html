@@ -48,6 +48,29 @@
 
    </div>
 
+   <div class="col-sm-3">
+
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Miscellaneous</h3>
+         </div>
+
+         <div class="list-group"  ng-show="showFilters">
+            <div class="checkbox list-group-item">
+               <label>
+                  <input type="checkbox" ng-model="spellConcentration.hideOthers" ng-checked="spellConcentration.hideOthers"> {{spellConcentration.name}}
+               </label>
+            </div>
+            <div class="checkbox list-group-item">
+               <label>
+                  <input type="checkbox" ng-model="spellRitual.hideOthers" ng-checked="spellRitual.hideOthers"> {{spellRitual.name}}
+               </label>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
 </div>
 
 <div class="btn-toolbar" role="toolbar">
@@ -64,7 +87,7 @@
          </div>
          <div class="panel-body autoHeightSpells" ng-class="{autoHeightSpellsWithFilter : showFilters}">
             <ul class="nav nav-pills nav-stacked spellsNav">
-               <li ng-repeat="spell in allVisibleSpells(allSpellSchools, allSpellLevels)" ng-class="{ active: isActiveSpell(spell._id) }">
+               <li ng-repeat="spell in allVisibleSpells(allSpellSchools, allSpellLevels, spellConcentration)" ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                </li>
             </ul>
