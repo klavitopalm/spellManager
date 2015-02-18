@@ -26,10 +26,53 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
             var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellConcentration);
             var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellRitual);
 
+
             var visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
+
+            if(spells) {
+               getRemainderNamesFromSets(spells, visibleSpells);
+            }
+
             return visibleSpells;
          }
       };
+
+      function getRemainderNamesFromSets(superset, subset) {
+         var cutSet = [];
+         var copyOfSuperset = [];
+         var emptySet = [];
+
+         for(var i = 0, len = superset.length; i<len; i++) {
+            copyOfSuperset[i] = superset[i];
+         }
+
+         console.log("______________");
+         // console.log("len superset: "+ superset.length);
+         // console.log("len copyOfSuperset: "+ copyOfSuperset.length);
+
+         for(var i = 0, len = superset.length; i<len; i++) {
+            for(var t = 0, subLen = subset.length; t<subLen; t++) {
+               if(superset[i]._id === subset[t]._id) {
+                  emptySet.push(superset[i]);
+                  break;
+               }
+            }
+         }
+
+
+         for(var i = 0, len = emptySet.length; i<len; i++) {
+            var index = copyOfSuperset.indexOf(emptySet[i]);
+            copyOfSuperset.splice(index, 1);
+         }
+
+         // console.log("len subset: "+ subset.length);
+         // console.log("len copyOfSuperset: "+ copyOfSuperset.length);
+
+         for(var i = 0, len = copyOfSuperset.length; i<len; i++) {
+            console.log("name: "+ copyOfSuperset[i].name);
+
+         }
+      }
 
       function getIdCutSet(set1, set2) {
          var cutSet = [];
