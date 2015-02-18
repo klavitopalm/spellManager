@@ -60,8 +60,8 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
       return (letter in $scope.anchors);
    };
 
-   $scope.allVisibleSpells = function(spellSchools, spellLevels, spellConcentration) {
-      var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools, spellLevels, spellConcentration);
+   $scope.allVisibleSpells = function(spellSchools, spellLevels, spellConcentration, spellRitual) {
+      var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools, spellLevels, spellConcentration, spellRitual);
 
       updateSpellAnchors(visibleSpells);
       return visibleSpells;

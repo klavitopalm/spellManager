@@ -1,11 +1,11 @@
 <div class="row">
 
-   <div class="col-sm-1">
+   <div class="col-sm-2">
       <div class="panel panel-default">
 
             <div class="checkbox" style="margin-left: 10px">
                <label>
-                  <input type="checkbox" ng-model="showFilters" ng-checked="showFilters"> filters
+                  <input type="checkbox" ng-model="showFilters" ng-checked="showFilters"> show filters
                </label>
             </div>
       </div>
@@ -87,7 +87,7 @@
          </div>
          <div class="panel-body autoHeightSpells" ng-class="{autoHeightSpellsWithFilter : showFilters}">
             <ul class="nav nav-pills nav-stacked spellsNav">
-               <li ng-repeat="spell in allVisibleSpells(allSpellSchools, allSpellLevels, spellConcentration)" ng-class="{ active: isActiveSpell(spell._id) }">
+               <li ng-repeat="spell in allVisibleSpells(allSpellSchools, allSpellLevels, spellConcentration, spellRitual)" ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                </li>
             </ul>

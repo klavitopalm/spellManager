@@ -16,13 +16,15 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
             return spellObjectsToBeShown;
          },
 
-         getSpellsToShow : function(spells, spellSchools, spellLevels, spellConcentration) {
+         getSpellsToShow : function(spells, spellSchools, spellLevels, spellConcentration, spellRitual) {
             var visibleSpellSchoolSpells = getSpellIdsForSpellSchools(spells, spellSchools);
             var visibleSpellLevelSpells = getSpellIdsForSpellLevels(spells, spellLevels);
             var visibleSpellConcentration = getSpellIdsForSpellConcentration(spells, spellConcentration);
+            var visibleSpellRitual = getSpellIdsForSpellRitual(spells, spellRitual);
 
             var allVisibleSpellIds = getIdCutSet(visibleSpellLevelSpells, visibleSpellSchoolSpells);
             var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellConcentration);
+            var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellRitual);
 
             var visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
             return visibleSpells;
@@ -91,6 +93,25 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
          if(spellConcentration.hideOthers) {
             angular.forEach(spells, function(spell) {
                if(spell.duration.concentration) {
+                  this.push(spell._id);
+               }
+            }, allVisibleSpellIds);
+         }
+         else {
+            angular.forEach(spells, function(spell) {
+                  this.push(spell._id);
+            }, allVisibleSpellIds);
+         }
+
+         return allVisibleSpellIds;
+      }
+
+      function getSpellIdsForSpellRitual(spells, spellRitual) {
+         var allVisibleSpellIds = [];
+
+         if(spellRitual.hideOthers) {
+            angular.forEach(spells, function(spell) {
+               if(spell.ritual) {
                   this.push(spell._id);
                }
             }, allVisibleSpellIds);
