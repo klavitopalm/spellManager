@@ -17,22 +17,21 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
          },
 
          getSpellsToShow : function(spells, spellSchools, spellLevels, spellConcentration, spellRitual) {
-            var visibleSpellSchoolSpells = getSpellIdsForSpellSchools(spells, spellSchools);
-            var visibleSpellLevelSpells = getSpellIdsForSpellLevels(spells, spellLevels);
-            var visibleSpellConcentration = getSpellIdsForSpellConcentration(spells, spellConcentration);
-            var visibleSpellRitual = getSpellIdsForSpellRitual(spells, spellRitual);
+            var visibleSpells = [];
+            if(spells && spellSchools && spellLevels && spellConcentration && spellRitual) {
+               var visibleSpellSchoolSpells = getSpellIdsForSpellSchools(spells, spellSchools);
+               var visibleSpellLevelSpells = getSpellIdsForSpellLevels(spells, spellLevels);
+               var visibleSpellConcentration = getSpellIdsForSpellConcentration(spells, spellConcentration);
+               var visibleSpellRitual = getSpellIdsForSpellRitual(spells, spellRitual);
 
-            var allVisibleSpellIds = getIdCutSet(visibleSpellLevelSpells, visibleSpellSchoolSpells);
-            var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellConcentration);
-            var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellRitual);
+               var allVisibleSpellIds = getIdCutSet(visibleSpellLevelSpells, visibleSpellSchoolSpells);
+               var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellConcentration);
+               var allVisibleSpellIds = getIdCutSet(allVisibleSpellIds, visibleSpellRitual);
 
+               visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
 
-            var visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
-
-            // if(spells) {
-            //    getRemainderNamesFromSets(spells, visibleSpells);
-            // }
-
+               // getRemainderNamesFromSets(spells, visibleSpells);
+            }
             return visibleSpells;
          }
       };
@@ -76,57 +75,59 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
 
       function getIdCutSet(set1, set2) {
          var cutSet = [];
-         angular.forEach(set1, function(element1) {
-            angular.forEach(set2, function(element2) {
-               if(element1 === element2) {
-                  this.push(element1);
-                  return;
+
+         if(set1 && set2) {
+            for(var t = 0, len1 = set1.length; t<len1; t++){
+               for(var i = 0, len2 = set2.length; i<len2; i++){
+
+                  if(set1[t] === set2[i]) {
+                     cutSet.push(set1[t]);
+                     break;
+                  }
                }
-            }, cutSet);
-         });
+            }
+         }
 
          return cutSet;
       }
 
       function getSpellIdsForSpellSchools(spells, spellSchools) {
          var allVisibleSpellIds = [];
-         angular.forEach(spellSchools, function(singleSpellSchool) {
+         for(var t = 0, lenSchools = spellSchools.length; t<lenSchools; t++) {
 
-            if(singleSpellSchool.isVisible) {
+            if(spellSchools[t].isVisible) {
                var spellsForThisSpellSchool = [];
 
-               angular.forEach(spells, function(spell) {
-                  if(spell.type.toLowerCase() === singleSpellSchool.name.toLowerCase()) {
-                     this.push(spell._id);
+               for(var i = 0, lenSpells = spells.length; i<lenSpells; i++) {
+                  if(spells[i].type.toLowerCase() === spellSchools[t].name.toLowerCase()) {
+                     spellsForThisSpellSchool.push(spells[i]._id);
                   }
-
-               }, spellsForThisSpellSchool);
+               }
 
             }
 
-            this.push.apply(this, spellsForThisSpellSchool);
-         }, allVisibleSpellIds);
+            allVisibleSpellIds.push.apply(allVisibleSpellIds, spellsForThisSpellSchool);
+         }
+
          return allVisibleSpellIds;
       }
 
       function getSpellIdsForSpellLevels(spells, spellLevels) {
          var allVisibleSpellIds = [];
-         angular.forEach(spellLevels, function(singleSpellLevel) {
+         for(var i = 0, lenLevel = spellLevels.length; i<lenLevel; i++) {
 
-            if(singleSpellLevel.isVisible) {
+            if(spellLevels[i].isVisible) {
                var spellsForThisSpellLevel = [];
 
-               angular.forEach(spells, function(spell) {
-                  if(spell.level === singleSpellLevel.level) {
-                     this.push(spell._id);
+               for(var t = 0, lenSpells = spells.length; t<lenSpells; t++) {
+                  if(spells[t].level === spellLevels[i].level) {
+                     spellsForThisSpellLevel.push(spells[t]._id);
                   }
-
-               }, spellsForThisSpellLevel);
+               }
 
             }
-
-            this.push.apply(this, spellsForThisSpellLevel);
-         }, allVisibleSpellIds);
+            allVisibleSpellIds.push.apply(allVisibleSpellIds, spellsForThisSpellLevel);
+         }
          return allVisibleSpellIds;
       }
 
@@ -134,16 +135,16 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
          var allVisibleSpellIds = [];
 
          if(spellConcentration.hideOthers) {
-            angular.forEach(spells, function(spell) {
-               if(spell.duration.concentration) {
-                  this.push(spell._id);
+            for(var i = 0, lenSpells = spells.length; i<lenSpells; i++) {
+               if(spells[i].duration.concentration) {
+                  allVisibleSpellIds.push(spells[i]._id);
                }
-            }, allVisibleSpellIds);
+            }
          }
          else {
-            angular.forEach(spells, function(spell) {
-                  this.push(spell._id);
-            }, allVisibleSpellIds);
+            for(var i = 0, lenSpells = spells.length; i<lenSpells; i++) {
+               allVisibleSpellIds.push(spells[i]._id);
+            }
          }
 
          return allVisibleSpellIds;
@@ -153,16 +154,16 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
          var allVisibleSpellIds = [];
 
          if(spellRitual.hideOthers) {
-            angular.forEach(spells, function(spell) {
-               if(spell.ritual) {
-                  this.push(spell._id);
+            for(var i = 0, lenSpells = spells.length; i<lenSpells; i++) {
+               if(spells[i].ritual) {
+                  allVisibleSpellIds.push(spells[i]._id);
                }
-            }, allVisibleSpellIds);
+            }
          }
          else {
-            angular.forEach(spells, function(spell) {
-                  this.push(spell._id);
-            }, allVisibleSpellIds);
+            for(var i = 0, lenSpells = spells.length; i<lenSpells; i++) {
+               allVisibleSpellIds.push(spells[i]._id);
+            }
          }
 
          return allVisibleSpellIds;
