@@ -29,9 +29,9 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
 
             var visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
 
-            if(spells) {
-               getRemainderNamesFromSets(spells, visibleSpells);
-            }
+            // if(spells) {
+            //    getRemainderNamesFromSets(spells, visibleSpells);
+            // }
 
             return visibleSpells;
          }
