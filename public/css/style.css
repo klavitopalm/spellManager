@@ -31,7 +31,7 @@ body {
 }
 
 .autoHeightSpellsWithFilter {
-   max-height: calc(100vh - 555px);
+   max-height: calc(100vh - 630px);
    overflow-y: auto;
 }
 

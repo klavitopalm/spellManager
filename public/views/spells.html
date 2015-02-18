@@ -30,6 +30,24 @@
 
    </div>
 
+   <div class="col-sm-2">
+
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Spell Levels</h3>
+         </div>
+
+         <div class="list-group"  ng-show="showFilters">
+            <div class="checkbox list-group-item" ng-repeat="spellLevel in allSpellLevels">
+               <label>
+                  <input type="checkbox" ng-model="spellLevel.isVisible" ng-checked="spellLevel.isVisible"> {{spellLevel.level}}
+               </label>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
 </div>
 
 <div class="btn-toolbar" role="toolbar">
@@ -46,7 +64,7 @@
          </div>
          <div class="panel-body autoHeightSpells" ng-class="{autoHeightSpellsWithFilter : showFilters}">
             <ul class="nav nav-pills nav-stacked spellsNav">
-               <li ng-repeat="spell in allVisibleSpells(allSpellSchools)" ng-class="{ active: isActiveSpell(spell._id) }">
+               <li ng-repeat="spell in allVisibleSpells(allSpellSchools, allSpellLevels)" ng-class="{ active: isActiveSpell(spell._id) }">
                   <a href="#" id="{{spell._id}}" ng-click="showSpellDetails(spell)">{{spell.name}}</a>
                </li>
             </ul>
