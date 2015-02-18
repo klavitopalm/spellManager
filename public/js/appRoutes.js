@@ -4,12 +4,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
    $routeProvider
 
    .when('/', {
-      templateUrl: 'views/spells.html',
+      templateUrl: 'views/classes.html',
       controller: 'ClassesController',
    })
 
    .when('/spells', {
-      templateUrl: 'views/classes.html',
+      templateUrl: 'views/spells.html',
       controller: 'SpellsController'
    });
 
