@@ -1,4 +1,4 @@
-angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controller('SpellsController', function($scope, $http, Spells, SpellAnchors) {
+angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFilterVisibility']).controller('SpellsController', function($scope, $http, Spells, SpellAnchors, VisibleSpells) {
 
 
    $scope.allSpellSchools = [
@@ -17,7 +17,7 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controlle
    Spells.get(function(data) {
       $scope.selectedSpell = '';
       $scope.allSpells = data;
-      $scope.anchors = SpellAnchors.getAnchors($scope.allSpells);
+      updateSpellAnchors($scope.allVisibleSpells)
    });
 
    $scope.showSpellDetails = function(spell) {
@@ -37,6 +37,18 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks']).controlle
 
    $scope.isAnchorAvailable = function(letter) {
       return (letter in $scope.anchors);
-   }
+   };
+
+   $scope.allVisibleSpells = function(spellSchools) {
+      var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools);
+
+      updateSpellAnchors(visibleSpells);
+      return visibleSpells;
+   };
+
+   function updateSpellAnchors(visibleSpells) {
+      $scope.anchors = SpellAnchors.getAnchors(visibleSpells);
+   };
+
 
 });
