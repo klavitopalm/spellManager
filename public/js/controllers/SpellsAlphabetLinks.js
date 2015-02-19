@@ -4,13 +4,13 @@ angular.module('SpellsAlphabetLinks', []).factory('SpellAnchors', function($http
 
             var spellAnchors = {};
 
-            angular.forEach(allSpells, function(singleSpell) {
-               var firstLetterUppercase = (singleSpell.name).charAt(0).toUpperCase();
+            for(var i = 0, lenLevel = allSpells.length; i<len; i++) {
+               var firstLetterUppercase = (allSpells[i].name).charAt(0).toUpperCase();
                if(!(firstLetterUppercase in spellAnchors)) {
-                  spellAnchors[firstLetterUppercase] = singleSpell._id;
+                  spellAnchors[firstLetterUppercase] = allSpells[i]._id;
                }
 
-            });
+            }
             return spellAnchors;
          }
       };
