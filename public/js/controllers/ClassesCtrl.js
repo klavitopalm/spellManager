@@ -1,6 +1,9 @@
 angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
    .controller('ClassesController', function($http, $scope, ClassesWithSpells, Classes) {
 
+
+   var SPELLS_LENGTH = 11;
+
    $scope.selectedSpell = '';
 
    Classes.get(function(data) {
@@ -12,77 +15,40 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
 
    $scope.showSpells = function(id) {
       ClassesWithSpells.get(id, function(data) {
-         var spellsLevel0 = [];
-         var spellsLevel1 = [];
-         var spellsLevel2 = [];
-         var spellsLevel3 = [];
-         var spellsLevel4 = [];
-         var spellsLevel5 = [];
-         var spellsLevel6 = [];
-         var spellsLevel7 = [];
-         var spellsLevel8 = [];
-         var spellsLevel9 = [];
-         var spellsLevel10 = [];
+
+         var spellsLevel = Create2DArray(SPELLS_LENGTH);
 
          var singleClass = data[0];
-         angular.forEach(singleClass.spells, function(singleSpell) {
 
-
-            switch (singleSpell.level) {
-               case 0:
-                  spellsLevel0.push(singleSpell);
-               break;
-               case 1:
-                  spellsLevel1.push(singleSpell);
-               break;
-               case 2:
-                  spellsLevel2.push(singleSpell);
-               break;
-               case 3:
-                  spellsLevel3.push(singleSpell);
-               break;
-               case 4:
-                  spellsLevel4.push(singleSpell);
-               break;
-               case 5:
-                  spellsLevel5.push(singleSpell);
-               break;
-               case 6:
-                  spellsLevel6.push(singleSpell);
-               break;
-               case 7:
-                  spellsLevel7.push(singleSpell);
-               break;
-               case 8:
-                  spellsLevel8.push(singleSpell);
-               break;
-               case 9:
-                  spellsLevel9.push(singleSpell);
-               break;
-               case 10:
-                  spellsLevel10.push(singleSpell);
-               break;
-               default:
-                  console.log('Error: unsupported spell level -' + singleSpell.level);
+         for(var i = 0, len = singleClass.spells.length; i<len; i++) {
+            if(singleClass.spells[i].level < 0 || singleClass.spells[i].level >= SPELLS_LENGTH ) {
+               console.log('Error: unsupported spell level -' + singleClass.spells[i].level);
             }
-         });
+            else {
+               spellsLevel[singleClass.spells[i].level].push(singleClass.spells[i]);
+            }
+         }
 
-         $scope.spellsLevel0 = spellsLevel0;
-         $scope.spellsLevel1 = spellsLevel1;
-         $scope.spellsLevel2 = spellsLevel2;
-         $scope.spellsLevel3 = spellsLevel3;
-         $scope.spellsLevel4 = spellsLevel4;
-         $scope.spellsLevel5 = spellsLevel5;
-         $scope.spellsLevel6 = spellsLevel6;
-         $scope.spellsLevel7 = spellsLevel7;
-         $scope.spellsLevel8 = spellsLevel8;
-         $scope.spellsLevel9 = spellsLevel9;
-         $scope.spellsLevel10 = spellsLevel10;
+         $scope.spellsLevel = new Array(SPELLS_LENGTH);
+
+         for(var i = 0; i<SPELLS_LENGTH; i++) {
+            $scope.spellsLevel[i] = spellsLevel[i];
+         }
 
          var temp = data[0];
          $scope.selectedSpell = '';
          activeClassId = id;
       });
+   }
+
+   function Create2DArray(rows) {
+      var arr = [];
+
+      for (var i=0;i<rows;i++) {
+         arr[i] = [];
+      }
+
+      return arr;
    }
 
    $scope.showSpellDetails = function(spell) {
@@ -106,43 +72,15 @@ angular.module('ClassesCtrl', ['ClassesWithSpellsService', 'ClassesService'])
    };
 
    $scope.isThereASpellToDisplay = function() {
-      var isThereASpellToDisplay = false;
+      if($scope.spellsLevel) {
+         for(var i = 0; i<SPELLS_LENGTH; i++) {
+            if($scope.spellsLevel[i] && $scope.spellsLevel[i].length) {
+               return true;
+            }
+         }
 
-      if($scope.spellsLevel0 && $scope.spellsLevel0.length) {
-         isThereASpellToDisplay = true;
       }
-      else if($scope.spellsLevel1 && $scope.spellsLevel1.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel2 && $scope.spellsLevel2.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel3 && $scope.spellsLevel3.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel4 && $scope.spellsLevel4.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel5 && $scope.spellsLevel5.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel6 && $scope.spellsLevel6.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel7 && $scope.spellsLevel7.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel8 && $scope.spellsLevel8.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel9 && $scope.spellsLevel9.length) {
-         isThereASpellToDisplay = true;
-      }
-      else if($scope.spellsLevel10 && $scope.spellsLevel10.length) {
-         isThereASpellToDisplay = true;
-      }
-
-      return isThereASpellToDisplay;
+      return false;
    };
 
 
