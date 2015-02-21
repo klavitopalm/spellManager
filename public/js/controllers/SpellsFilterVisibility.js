@@ -3,15 +3,16 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
          getSpellObjectsFromSpellIds : function(allSpells, visibleSpellIds) {
             var spellObjectsToBeShown = [];
 
-            angular.forEach(visibleSpellIds, function(spellId) {
-                  angular.forEach(allSpells, function(spell) {
-                     if(spell._id === spellId) {
-                        this.push(spell);
-                        return;
-                     }
-                  }, spellObjectsToBeShown);
+               for(var i = 0, len = visibleSpellIds.length; i < len; i++) {
 
-            });
+                  for(var t = 0, lenAllSpells = allSpells.length; t < lenAllSpells; t++) {
+                     if(allSpells[t]._id === visibleSpellIds[i]) {
+                        spellObjectsToBeShown.push(allSpells[t]);
+                        break;
+                     }
+                  }
+
+               }
 
             return spellObjectsToBeShown;
          },
