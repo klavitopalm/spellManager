@@ -30,6 +30,11 @@ angular.module('SpellsFilterVisibility', []).factory('VisibleSpells', function($
 
                visibleSpells = this.getSpellObjectsFromSpellIds(spells, allVisibleSpellIds);
 
+               visibleSpells = visibleSpells.sort(function(a, b){
+                  if(a.name < b.name) return -1;
+                  if(a.name > b.name) return 1;
+                  return 0;
+               })
                // getRemainderNamesFromSets(spells, visibleSpells);
             }
             return visibleSpells;

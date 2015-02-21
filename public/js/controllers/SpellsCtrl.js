@@ -64,8 +64,23 @@ angular.module('SpellsCtrl', ['SpellsService', 'SpellsAlphabetLinks', 'SpellsFil
       var visibleSpells = VisibleSpells.getSpellsToShow($scope.allSpells, spellSchools, spellLevels, spellConcentration, spellRitual);
 
       updateSpellAnchors(visibleSpells);
+
+      // putSpellNamesToLog(visibleSpells)
+      // console.log("_______");
+
       return visibleSpells;
    };
+
+   function putSpellNamesToLog(visibleSpellsArray) {
+      if(visibleSpellsArray.length > 0) {
+         var consoleString = visibleSpellsArray[0].name;
+         for(var i = 1, len = visibleSpellsArray.length;i < len; i++) {
+            consoleString += ", " + visibleSpellsArray[i].name;
+         }
+         console.log(consoleString);
+      }
+   }
+
 
    function updateSpellAnchors(visibleSpells) {
       $scope.anchors = SpellAnchors.getAnchors(visibleSpells);
