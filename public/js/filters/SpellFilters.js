@@ -73,4 +73,15 @@ angular.module('SpellFilters', [])
 
       return output;
    };
+})
+.filter('spellRitual', function() {
+   return function(ritual) {
+      var output = "";
+
+      if(ritual) {
+         output += "(ritual)";
+      }
+
+      return output;
+   };
 });
